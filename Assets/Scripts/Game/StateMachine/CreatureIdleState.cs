@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class CreatureIdleState : CreatureBaseState
 {
-    public override float RamdomTime => base.RamdomTime;
+    public float RamdomTime = 2;
     public override void EnterState(CreatureStateManager creature)
     {
-        Debug.Log("Enter IdleState");
-        Debug.Log(RamdomTime);
+        Debug.Log("Idle EnterState");
     }
     public override void UpdateState(CreatureStateManager creature)
     {
+        Debug.Log("Idle UpdateState");
+        Debug.Log(RamdomTime);
+        RamdomTime -=Time.deltaTime;
+
+        if (RamdomTime <= 0)
+        {
+            creature.SwitchState(creature.moveState);
+        }
+     
 
     }
     public override void OnCollisionEnter(CreatureStateManager creature, Collision collision)

@@ -6,17 +6,17 @@ public class CreatureStateManager : MonoBehaviour
 {
     CreatureBaseState currentState;    
 
-    CreatureIdleState idleState =new CreatureIdleState();    
-    CreatureAttackState attackState =new CreatureAttackState();
-    CreatureHurtState hurtState =new CreatureHurtState();    
-    CreatureMoveState moveState =new CreatureMoveState();
+    public CreatureIdleState idleState =new CreatureIdleState();    
+    public CreatureAttackState attackState =new CreatureAttackState();
+    public CreatureHurtState hurtState =new CreatureHurtState();    
+    public CreatureMoveState moveState =new CreatureMoveState();
     private void Start()
     {
         currentState = idleState;
 
         currentState.EnterState(this);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         currentState.UpdateState(this); 
     }
