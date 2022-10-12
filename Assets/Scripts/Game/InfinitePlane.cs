@@ -58,55 +58,58 @@ public class InfinitePlane : MonoBehaviour
     }
     private void Update()
     {
-        int xMove = (int)(player.transform.position.x -startPos.x);
-        int zMove = (int)(player.transform.position.z -startPos.z);
-
-        if(Mathf.Abs(xMove)>=planeSize || Mathf.Abs(zMove) >= planeSize)
+        if (player != null)
         {
-            float updateTime = Time.realtimeSinceStartup;
+            int xMove = (int)(player.transform.position.x - startPos.x);
+            int zMove = (int)(player.transform.position.z - startPos.z);
 
-
-            //判斷玩家是否靠近下個網格 Mathf.Floor(向下取整數)
-            int playerX = (int)(Mathf.Floor(player.transform.position.x / planeSize) * planeSize);
-            int playerZ = (int)(Mathf.Floor(player.transform.position.z / planeSize) * planeSize);
-
-            for (int x = -halfTilesX; x < halfTilesX; x++)
+            if (Mathf.Abs(xMove) >= planeSize || Mathf.Abs(zMove) >= planeSize)
             {
-                for (int z = -halfTilesZ; z < halfTilesZ; z++)
-                {
-                    Vector3 pos = new Vector3(x * planeSize + playerX, 0, z * planeSize + playerZ);
+                float updateTime = Time.realtimeSinceStartup;
 
-                    string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
-                    if (!tiles.ContainsKey(tileName))
+
+                //判斷玩家是否靠近下個網格 Mathf.Floor(向下取整數)
+                int playerX = (int)(Mathf.Floor(player.transform.position.x / planeSize) * planeSize);
+                int playerZ = (int)(Mathf.Floor(player.transform.position.z / planeSize) * planeSize);
+
+                for (int x = -halfTilesX; x < halfTilesX; x++)
+                {
+                    for (int z = -halfTilesZ; z < halfTilesZ; z++)
                     {
-                        GameObject t = Instantiate(plane, pos, Quaternion.identity);
-                        t.name = tileName;
-                        Tile tile = new Tile(t, updateTime);
-                        tiles.Add(tileName, tile);
+                        Vector3 pos = new Vector3(x * planeSize + playerX, 0, z * planeSize + playerZ);
+
+                        string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+                        if (!tiles.ContainsKey(tileName))
+                        {
+                            GameObject t = Instantiate(plane, pos, Quaternion.identity);
+                            t.name = tileName;
+                            Tile tile = new Tile(t, updateTime);
+                            tiles.Add(tileName, tile);
+                        }
+                        else
+                        {
+                            (tiles[tileName] as Tile).creationTime = updateTime;
+                        }
+
+                    }
+                }
+                Hashtable newTerrian = new Hashtable();
+                foreach (Tile tls in tiles.Values)
+                {
+                    if (tls.creationTime != updateTime)
+                    {
+                        Destroy(tls.theTile);
+
                     }
                     else
                     {
-                        (tiles[tileName] as Tile).creationTime = updateTime;
+                        newTerrian.Add(tls.theTile.name, tls);
                     }
-                
                 }
-            }
-            Hashtable newTerrian = new Hashtable();
-            foreach (Tile tls in tiles.Values)
-            {
-                if(tls.creationTime != updateTime)
-                {
-                    Destroy(tls.theTile);
+                tiles = newTerrian;
+                startPos = player.transform.position;
 
-                }
-                else
-                {
-                    newTerrian.Add(tls.theTile.name, tls);
-                }
             }
-            tiles = newTerrian;
-            startPos = player.transform.position;
-
         }
     }
 }

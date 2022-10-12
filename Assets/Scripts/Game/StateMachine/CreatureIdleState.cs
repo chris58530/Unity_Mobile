@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CreatureIdleState : CreatureBaseState
 {
-    public float RamdomTime = 2;
+    public float RamdomTime;
     public override void EnterState(CreatureStateManager creature)
     {
+        RamdomTime = Random.Range(2, 4);
         Debug.Log("Idle EnterState");
+        Debug.Log(RamdomTime);
+
     }
     public override void UpdateState(CreatureStateManager creature)
     {
         Debug.Log("Idle UpdateState");
-        Debug.Log(RamdomTime);
         RamdomTime -=Time.deltaTime;
 
         if (RamdomTime <= 0)

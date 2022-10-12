@@ -10,6 +10,7 @@ public class CreatureStateManager : MonoBehaviour
     public CreatureAttackState attackState =new CreatureAttackState();
     public CreatureHurtState hurtState =new CreatureHurtState();    
     public CreatureMoveState moveState =new CreatureMoveState();
+    public CreatureDestroyState destroyState = new CreatureDestroyState();
     private void Start()
     {
         currentState = idleState;

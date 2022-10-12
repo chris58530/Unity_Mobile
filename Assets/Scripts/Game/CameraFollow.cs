@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Vector3 offSet;
     private void LateUpdate()
     {
-
-        transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z)+offSet;
+        if(player != null)
+            transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z)+offSet;
     }
 }

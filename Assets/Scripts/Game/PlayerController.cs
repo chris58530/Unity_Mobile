@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float moveSpeed;
 
-    private void Start()
+    private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -32,5 +33,11 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(rb.velocity);
         }
     }
-   
+    public void GetDamage(CreatureStateManager creature)
+    {
+        Debug.Log("Attack get");
+        Debug.Log("Attack get");
+
+        rb.velocity = creature.transform.position*100;
+    }
 }
