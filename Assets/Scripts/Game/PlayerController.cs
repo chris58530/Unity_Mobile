@@ -42,8 +42,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Attack get");
 
 
-        Vector3 forcePos = new Vector3(creature.transform.position.x, 0, creature.transform.position.z);
-        rb.AddForce(forcePos * 200,ForceMode.Impulse);
-
+        Vector3 forcePos = new Vector3(creature.transform.position.x-transform.position.x, 0, creature.transform.position.z-transform.position.z);
+      
+        rb.AddForce(-forcePos.normalized * 2000);
     }
+   
 }

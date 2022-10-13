@@ -7,7 +7,7 @@ public class CreatureIdleState : CreatureBaseState
     public float RamdomTime;
     public override void EnterState(CreatureStateManager creature)
     {
-        RamdomTime = Random.Range(2, 4);
+        RamdomTime = Random.Range(1, 2);
         Debug.Log("Idle EnterState");
         Debug.Log(RamdomTime);
 
