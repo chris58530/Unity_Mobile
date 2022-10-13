@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Pattern_Move();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
 
+        }
 
     }
     public  void Pattern_Move()
@@ -38,6 +41,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Attack get");
         Debug.Log("Attack get");
 
-        rb.velocity = creature.transform.position*100;
+
+        Vector3 forcePos = new Vector3(creature.transform.position.x, 0, creature.transform.position.z);
+        rb.AddForce(forcePos * 200,ForceMode.Impulse);
+
     }
 }
