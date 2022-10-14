@@ -4,8 +4,13 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour 
 {
+    public delegate void playerDelegate();
+    playerDelegate playerState;
+
+    [SerializeField] float forceStrength;
+
     [SerializeField] CreatureData playerData;
 
     [SerializeField] private Rigidbody rb;
@@ -14,17 +19,22 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float moveSpeed;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
+    private void Start()
+    {
+        playerState += Pattern_Move;
+
+    }
 
     private void FixedUpdate()
     {
-        Pattern_Move();
-        if (Input.GetKeyDown(KeyCode.A))
+        if (playerState != null)
         {
-
+            playerState();
         }
 
     }
@@ -44,7 +54,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 forcePos = new Vector3(creature.transform.position.x-transform.position.x, 0, creature.transform.position.z-transform.position.z);
       
-        rb.AddForce(-forcePos.normalized * 2000);
+        rb.AddForce(-forcePos.normalized * forceStrength *500);
     }
-   
+
+    
 }

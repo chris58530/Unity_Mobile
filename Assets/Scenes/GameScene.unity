@@ -1522,6 +1522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41dcf7309844e142b9f5cf6e0c0d4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceStrength: 4
   playerData: {fileID: 0}
   rb: {fileID: 1814542951}
   joystick: {fileID: 1252022342}
