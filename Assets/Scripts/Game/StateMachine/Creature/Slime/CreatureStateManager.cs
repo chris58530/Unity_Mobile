@@ -13,7 +13,7 @@ public class CreatureStateManager : MonoBehaviour
     public CreatureDestroyState destroyState = new CreatureDestroyState();
     private void Start()
     {
-        currentState = idleState;
+        currentState = null;
 
         currentState.EnterState(this);
     }

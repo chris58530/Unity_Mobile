@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +37,6 @@ public class PlayerController : MonoBehaviour
         {
             playerState();
         }
-
     }
     public  void Pattern_Move()
     {
@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     }
     public void GetDamage(CreatureStateManager creature)
     {
+        playerState -= Pattern_Move;
+
         Debug.Log("Attack get");
         Debug.Log("Attack get");
 
@@ -55,7 +57,9 @@ public class PlayerController : MonoBehaviour
         Vector3 forcePos = new Vector3(creature.transform.position.x-transform.position.x, 0, creature.transform.position.z-transform.position.z);
       
         rb.AddForce(-forcePos.normalized * forceStrength *500);
-    }
+        playerState += Pattern_Move;
 
-    
+    }
+  
+
 }
