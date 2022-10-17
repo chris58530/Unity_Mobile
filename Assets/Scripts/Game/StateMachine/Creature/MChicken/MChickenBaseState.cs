@@ -25,7 +25,8 @@ public class MChickenIdleState : MChickenBaseState
 {
     public override void UpdateState(MChickenStateManager creature)
     {
-        throw new System.NotImplementedException();
+        base.EnterState(creature);
+        creature.SwitchState(creature.moveState);   
     }
 }
 public class MChickenMoveState : MChickenBaseState
