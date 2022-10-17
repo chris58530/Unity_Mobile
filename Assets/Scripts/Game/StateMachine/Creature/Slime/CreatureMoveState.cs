@@ -34,7 +34,7 @@ public class CreatureMoveState : CreatureBaseState
         {
             Debug.Log("Attack PlAYER");
             //collision.gameObject.GetComponent<PlayerController>().GetComponent<Rigidbody>().velocity = creature.transform.position * 100;
-            collision.gameObject.GetComponent<PlayerController>().GetDamage(creature);
+            //collision.gameObject.GetComponent<PlayerController>().GetDamage(creature);
         }
     }
 }

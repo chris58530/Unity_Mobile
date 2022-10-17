@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 84307966}
   - component: {fileID: 84307965}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 193693747}
   - component: {fileID: 193693746}
   - component: {fileID: 193693745}
-  - component: {fileID: 193693744}
+  - component: {fileID: 193693750}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -227,18 +227,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &193693744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193693743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d3f6fb8a827a74d8c176109502c37d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &193693745
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -333,6 +321,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &193693750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193693743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d9887272c616941b9e7759fb191b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlimeData: {fileID: 11400000, guid: ef6d4830a69649246a0754a25d61c4cd, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
