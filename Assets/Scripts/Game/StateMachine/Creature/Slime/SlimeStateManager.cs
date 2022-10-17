@@ -12,7 +12,7 @@ public class SlimeStateManager : MonoBehaviour
     public SlimeMoveState moveState = new SlimeMoveState();
     public SlimeHurtState hurtState = new SlimeHurtState();
 
-    public CreatureDataSO SlimeData;
+    public CreatureDataSO CreatureData;
 
 
     private void Start()    

@@ -11,7 +11,7 @@ public class MChickenStateManager : MonoBehaviour
     public MChickenMoveState moveState = new MChickenMoveState();
     public MChickenIdleState idleState = new MChickenIdleState();
 
-    public CreatureDataSO MChickenData;
+    public CreatureDataSO CreatureData;
 
 
     private void Start()

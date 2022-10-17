@@ -8,5 +8,6 @@ public class CreatureDataSO : ScriptableObject
     public float hp;
     public float moveSpeed;
     public float attack;
-    public GameObject[] dropItems;
+    public GameObject dropItems;
+    
 }

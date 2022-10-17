@@ -53,7 +53,7 @@ public class SlimeMoveState : SlimeBaseState
         if (playerTrans != null)
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
-            rb.transform.Translate(new Vector3(0, 0, 1* creature.SlimeData.moveSpeed * Time.deltaTime));
+            rb.transform.Translate(new Vector3(0, 0, 1* creature.CreatureData.moveSpeed * Time.deltaTime));
         }
         else
         {

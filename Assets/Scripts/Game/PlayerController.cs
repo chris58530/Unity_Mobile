@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float attackCD;
 
+    [SerializeField] CapsuleCollider attackCollider;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();

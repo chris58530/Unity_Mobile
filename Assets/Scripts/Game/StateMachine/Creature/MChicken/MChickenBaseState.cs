@@ -12,10 +12,7 @@ public abstract class MChickenBaseState
     public virtual void OnCollisionEnter(MChickenStateManager creature, Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            creature.SwitchState(creature.attackState);
-        if (collision.gameObject.tag == "PlayerAttack")
-            creature.SwitchState(creature.hurtState);
-        else return;
+            creature.SwitchState(creature.attackState);   
     }
 }
 #region NChicken: Idle Move Attack Hurt Destroy
@@ -47,7 +44,7 @@ public class MChickenMoveState : MChickenBaseState
         if (playerTrans != null)
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
-            rb.transform.Translate(new Vector3(0, 0, 1 * creature.MChickenData.moveSpeed * Time.deltaTime));
+            rb.transform.Translate(new Vector3(0, 0, 1 * creature.CreatureData.moveSpeed * Time.deltaTime));
         }
         else
         {
@@ -55,6 +52,17 @@ public class MChickenMoveState : MChickenBaseState
             creature.SwitchState(creature.destroyState);
 
         }
+    }
+    public override void OnCollisionEnter(MChickenStateManager creature, Collision collision)
+    {
+        base.OnCollisionEnter(creature, collision);
+        
+        //creature.CreatureData.hp -= collision.gameObject.GetComponent<CreatureDataSO>().attack;
+
+        if (creature.CreatureData.hp < 0)
+            creature.SwitchState(creature.destroyState);
+        else
+            creature.SwitchState(creature.hurtState);
     }
 }
 
@@ -76,13 +84,30 @@ public class MChickenAttackState : MChickenBaseState
 
 public class MChickenHurtState : MChickenBaseState
 {
+    float hurtCD;
+    public override void EnterState(MChickenStateManager creature)
+    {
+        base.EnterState(creature);
+        hurtCD = creature.CreatureData.attack;
+    }
     public override void UpdateState(MChickenStateManager creature)
     {
-        throw new System.NotImplementedException();
+        if (hurtCD > 0)
+            hurtCD -= Time.deltaTime;
+        else
+            creature.SwitchState(creature.idleState);
     }
 }
 public class MChickenDestroyState : MChickenBaseState
 {
+    public override void EnterState(MChickenStateManager creature)
+    {
+        base.EnterState(creature);
+        //¼Q±¼¸¨ª«
+        //°Êµe
+        GameObject.Destroy(creature.gameObject);
+    }
+
     public override void UpdateState(MChickenStateManager creature)
     {
         throw new System.NotImplementedException();
