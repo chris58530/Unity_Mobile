@@ -4,6 +4,5 @@ using UnityEngine;
 
 interface IAttack
 {
-    public void AttackPower();
-    public float GetAttack();
+    public IEnumerator AttackCD(float CD,GameObject creature);   
 }

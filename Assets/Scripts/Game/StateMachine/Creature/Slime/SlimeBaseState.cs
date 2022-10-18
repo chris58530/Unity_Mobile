@@ -45,7 +45,7 @@ public class SlimeMoveState : SlimeBaseState
     {
        base.EnterState(creature);
         rb = creature.GetComponent<Rigidbody>();
-        playerTrans = GameObject.Find("Player").transform;
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void UpdateState(SlimeStateManager creature)
@@ -70,7 +70,7 @@ public class SlimeAttackState : SlimeBaseState
     {
         base.EnterState(creature);
 
-        GameObject.FindObjectOfType<PlayerController>().GetDamage(creature.transform);
+        //GameObject.FindObjectOfType<PlayerController>().GetDamage(creature.transform);
         creature.SwitchState(creature.idleState);
 
     }

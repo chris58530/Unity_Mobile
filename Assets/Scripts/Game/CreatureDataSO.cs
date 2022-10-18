@@ -9,5 +9,8 @@ public class CreatureDataSO : ScriptableObject
     public float moveSpeed;
     public float attack;
     public GameObject dropItems;
-    
+    public float attackCD;
+    public float currentAttackCD;
+    public FixedJoystick joystick;
+
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class OctopusStateManager : MonoBehaviour
 {
-    public OctopusBaseState currentState;
+
+    public OctopusBaseState currentState; //DEBUG 使用 正式版需改為PRIVATE!!!!!!
+
     public OctopusAttackState attackState = new OctopusAttackState();
     public OctopusDestroyState destroyState = new OctopusDestroyState();
     public OctopusHurtState hurtState = new OctopusHurtState();
@@ -13,10 +15,11 @@ public class OctopusStateManager : MonoBehaviour
 
     public CreatureDataSO CreatureData;
 
-
+    public FixedJoystick fixedJoystick;
     private void Start()
     {
         currentState = idleState;
+        CreatureData.currentAttackCD = CreatureData.attackCD;
 
         currentState.EnterState(this);
     }
@@ -26,6 +29,7 @@ public class OctopusStateManager : MonoBehaviour
             currentState = idleState;
         else
             currentState.UpdateState(this);
+        
     }
 
     private void OnCollisionEnter(Collision collision)

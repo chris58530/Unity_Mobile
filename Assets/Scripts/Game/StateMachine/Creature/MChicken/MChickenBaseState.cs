@@ -36,7 +36,8 @@ public class MChickenMoveState : MChickenBaseState
     {
         base.EnterState(creature);
         rb = creature.GetComponent<Rigidbody>();
-        playerTrans = GameObject.Find("Player").transform;
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     public override void UpdateState(MChickenStateManager creature)
@@ -72,7 +73,7 @@ public class MChickenAttackState : MChickenBaseState
     {
         base.EnterState(creature);
 
-        GameObject.FindObjectOfType<PlayerController>().GetDamage(creature.transform);
+        //GameObject.FindObjectOfType<PlayerController>().GetDamage(creature.transform);
         creature.SwitchState(creature.idleState);
     }
     public override void UpdateState(MChickenStateManager creature)
