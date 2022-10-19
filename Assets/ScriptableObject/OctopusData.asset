@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   moveSpeed: 6.23
-  attack: 1
-  dropItems: {fileID: 0}
+  attackPower: 0
+  items: []
   attackCD: 2
   currentAttackCD: 1.000001
-  joystick: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
-    type: 3}
+  hurtCD: 2
+  currentHurtCD: 0

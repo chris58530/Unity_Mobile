@@ -7,7 +7,7 @@ public class CreatureDataSO : ScriptableObject
 {
     public float hp;
     public float moveSpeed;
-    public float attack;
+    public float attackPower;
 
     [SerializeField]
     private GameObject[] items;
@@ -18,4 +18,8 @@ public class CreatureDataSO : ScriptableObject
 
     public float attackCD;
     public float currentAttackCD;
+
+    public float hurtCD;
+    public float currentHurtCD;
+
 }

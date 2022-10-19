@@ -89,7 +89,6 @@ public class MChickenHurtState : MChickenBaseState
     public override void EnterState(MChickenStateManager creature)
     {
         base.EnterState(creature);
-        hurtCD = creature.CreatureData.attack;
     }
     public override void UpdateState(MChickenStateManager creature)
     {

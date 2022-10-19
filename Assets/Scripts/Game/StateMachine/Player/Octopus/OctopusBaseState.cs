@@ -13,23 +13,38 @@ public abstract class OctopusBaseState
     }
     public virtual void UpdateState(OctopusStateManager creature)
     {
-       if(Input.touchCount ==0 && creature.CreatureData.currentAttackCD <= 0)
+
+
+        if (!Input.anyKey && creature.CreatureData.currentAttackCD <= 0)
             creature.SwitchState(creature.attackState);
         else
             creature.SwitchState(creature.moveState);
 
+        //if (Input.touchCount == 0 && creature.CreatureData.currentAttackCD <= 0)
+        //    creature.SwitchState(creature.attackState);
+        //else
+        //    creature.SwitchState(creature.moveState);
 
-        if (creature.CreatureData.currentAttackCD > 0 )
-        {
+
+        if (creature.CreatureData.currentAttackCD > 0)
             creature.CreatureData.currentAttackCD -= Time.deltaTime;
-        }
-        
+
+        if (creature.CreatureData.currentHurtCD > 0)
+            creature.CreatureData.currentHurtCD -= Time.deltaTime;
+
+
     }
 
     public virtual void OnCollisionEnter(OctopusStateManager creature, Collision collision)
     {
-        if (collision.gameObject.tag == ("EnemyAttack"))
+        if (collision.gameObject.tag == ("EnemyAttack") && creature.CreatureData.currentHurtCD <= 0)
+        {
+            Debug.Log("EnemyAttack!!!");
+
+            Vector3 forcePos = new Vector3(creature.transform.position.x - collision.transform.position.x, 0, creature.transform.position.z - collision.transform.position.z);
+            rb.AddForce(forcePos.normalized * 50 * 100);
             creature.SwitchState(creature.hurtState);
+        }
     }
 }
 #region Player_Octopus: Idle Move Attack Hurt Destroy
@@ -37,11 +52,16 @@ public abstract class OctopusBaseState
 
 public class OctopusIdleState : OctopusBaseState
 {
-    
+    public override void EnterState(OctopusStateManager creature)
+    {
+        base.EnterState(creature);
+        creature.SwitchState(creature.moveState);
+
+    }
     public override void UpdateState(OctopusStateManager creature)
     {
         //animation here
-        creature.SwitchState(creature.moveState);
+        base.UpdateState(creature);
     }
 }
 public class OctopusMoveState : OctopusBaseState
@@ -66,12 +86,7 @@ public class OctopusMoveState : OctopusBaseState
             creature.transform.rotation = Quaternion.LookRotation(rb.velocity);           
         }
     }
-    public override void OnCollisionEnter(OctopusStateManager creature, Collision collision)
-    {
-        base.OnCollisionEnter(creature, collision);
-
-       
-    }
+    
 }
 
 public class OctopusAttackState : OctopusBaseState
@@ -96,29 +111,13 @@ public class OctopusAttackState : OctopusBaseState
 
 public class OctopusHurtState : OctopusBaseState
 {
-    float hurtCD;
     public override void EnterState(OctopusStateManager creature)
     {
         base.EnterState(creature);
-        hurtCD = creature.CreatureData.attack;
+        creature.CreatureData.currentHurtCD = creature.CreatureData.hurtCD;
+        creature.SwitchState(creature.idleState);
+
     }
-    public override void UpdateState(OctopusStateManager creature)
-    {
-        if (hurtCD > 0)
-            hurtCD -= Time.deltaTime;
-        else
-            creature.SwitchState(creature.idleState);
-    }
-    public override void OnCollisionEnter(OctopusStateManager creature, Collision collision)
-    {
-        if (collision.gameObject.tag == ("EnemyAttack"))
-        {
-            Vector3 forcePos = new Vector3(creature.transform.position.x - collision.transform.position.x, 0, creature.transform.position.z - collision.transform.position.z);
-            rb.AddForce(-forcePos.normalized * 20 * 100);
-        }
-      
-    }
-  
 }
 public class OctopusDestroyState : OctopusBaseState
 {
