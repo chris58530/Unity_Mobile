@@ -8,9 +8,14 @@ public class CreatureDataSO : ScriptableObject
     public float hp;
     public float moveSpeed;
     public float attack;
-    public GameObject dropItems;
+
+    [SerializeField]
+    private GameObject[] items;
+    public GameObject dropItems
+    {
+        get { return items[Random.Range(0,1)]; }        
+    }
+
     public float attackCD;
     public float currentAttackCD;
-    public FixedJoystick joystick;
-
 }

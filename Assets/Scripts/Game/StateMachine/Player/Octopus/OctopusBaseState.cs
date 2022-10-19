@@ -37,6 +37,7 @@ public abstract class OctopusBaseState
 
 public class OctopusIdleState : OctopusBaseState
 {
+    
     public override void UpdateState(OctopusStateManager creature)
     {
         //animation here
