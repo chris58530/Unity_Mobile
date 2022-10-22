@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   moveSpeed: 6.23
-  attackPower: 0
+  attackPower: 1
   items: []
   attackCD: 2
-  currentAttackCD: 1.8400002
+  currentAttackCD: 1.1600008
   hurtCD: 0.5
-  currentHurtCD: 0.05999991
+  currentHurtCD: -0.00000008940697

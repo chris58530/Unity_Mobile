@@ -5,8 +5,8 @@ public class PCowStateManager : MonoBehaviour
 {
     public PCowBaseState currentState;
     public PCowAttackState attackState = new PCowAttackState();
-    public PCowHurtState hurtState = new PCowHurtState();
     public PCowMoveState moveState = new PCowMoveState();
+    public PCowChargeState chargeState = new PCowChargeState();
 
     public CreatureDataSO CreatureData;
 
@@ -24,14 +24,14 @@ public class PCowStateManager : MonoBehaviour
         else
             currentState.UpdateState(this);
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (currentState == null)
             currentState = moveState;
         else
-            currentState.OnCollisionEnter(this, collision);
+            currentState.OnTriggerEnter(this, collision);
     }
+   
 
     public void SwitchState(PCowBaseState creatureBaseState)
     {
