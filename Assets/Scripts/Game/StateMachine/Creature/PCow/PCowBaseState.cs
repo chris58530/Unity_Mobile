@@ -9,11 +9,14 @@ public  abstract class PCowBaseState
     public virtual void EnterState(PCowStateManager creature)
     {
         Debug.Log(string.Format("<color=#ff0000>{0}</color>", creature.currentState + "模式"));
+
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
     public virtual void UpdateState(PCowStateManager creature)
     {
-        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         float distance = Vector3.Distance(playerTrans.position, creature.transform.position);
+        Debug.Log(distance);
         if (creature.CreatureData.currentAttackCD > 0)
         {
             creature.CreatureData.currentAttackCD -= Time.deltaTime;
@@ -32,22 +35,10 @@ public  abstract class PCowBaseState
         else return;
     }
 }
-#region SlimeState: Idle Move Attack Hurt Destroy
+#region SlimeState:  Move Attack Hurt 
 
 
-public class PCowIdleState : PCowBaseState
-{
-    public override void EnterState(PCowStateManager creature)
-    {
 
-        base.EnterState(creature);
-    }
-    public override void UpdateState(PCowStateManager creature)
-    {
-        creature.SwitchState(creature.moveState);
-
-    }
-}
 public class PCowMoveState : PCowBaseState
 {
 
@@ -56,10 +47,12 @@ public class PCowMoveState : PCowBaseState
     {
         base.EnterState(creature);
         rb = creature.GetComponent<Rigidbody>();
+
     }
 
     public override void UpdateState(PCowStateManager creature)
     {
+        base.UpdateState(creature);
         if (playerTrans != null)
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
@@ -68,7 +61,6 @@ public class PCowMoveState : PCowBaseState
         else
         {
             Debug.Log("NO PlAYER");
-            creature.SwitchState(creature.destroyState);
 
         }
     }
@@ -78,6 +70,8 @@ public class PCowAttackState : PCowBaseState
 {
     Vector3 target;
     float charge = 3; //續力時間
+
+    float goToMove = -5; //
     public override void EnterState(PCowStateManager creature)
     {
         base.EnterState(creature);
@@ -93,7 +87,13 @@ public class PCowAttackState : PCowBaseState
     {
         charge -= Time.deltaTime;
         if (charge <= 0)
-            creature.transform.position = Vector3.MoveTowards(creature.transform.position, target,creature.CreatureData.moveSpeed*3*Time.deltaTime);      
+            creature.transform.position = Vector3.MoveTowards(creature.transform.position, target,creature.CreatureData.moveSpeed*3*Time.deltaTime);
+
+        if (charge <= goToMove)
+        {
+            creature.SwitchState(creature.moveState);
+            charge = 3;
+        }
     }
 }
 
@@ -109,14 +109,5 @@ public class PCowHurtState : PCowBaseState
     {
     }
 }
-public class PCowDestroyState : PCowBaseState
-{
-    public override void EnterState(PCowStateManager creature)
-    {
-    }
 
-    public override void UpdateState(PCowStateManager creature)
-    {
-    }
-}
 #endregion

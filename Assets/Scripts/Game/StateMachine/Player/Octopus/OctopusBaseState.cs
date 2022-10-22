@@ -15,15 +15,15 @@ public abstract class OctopusBaseState
     {
 
 
-        //if (!Input.anyKey && creature.CreatureData.currentAttackCD <= 0)
-        //    creature.SwitchState(creature.attackState);
-        //else
-        //    creature.SwitchState(creature.moveState);
-
-        if (Input.touchCount == 0 && creature.CreatureData.currentAttackCD <= 0)
+        if (!Input.anyKey && creature.CreatureData.currentAttackCD <= 0)
             creature.SwitchState(creature.attackState);
         else
             creature.SwitchState(creature.moveState);
+
+        //if (Input.touchCount == 0 && creature.CreatureData.currentAttackCD <= 0)
+        //    creature.SwitchState(creature.attackState);
+        //else
+        //    creature.SwitchState(creature.moveState);
 
 
         if (creature.CreatureData.currentAttackCD > 0)
