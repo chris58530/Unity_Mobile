@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45cfdd5da1550914cafd64aa0c92cd54, type: 3}
   m_Name: PCowData
   m_EditorClassIdentifier: 
-  hp: 0
   moveSpeed: 1
-  attackPower: 0
-  items: []
+  attackPower: 1
   attackCD: 3
   currentAttackCD: 0
   hurtCD: 0
   currentHurtCD: 0
+  MaxHP: 5
+  currentHP: 0

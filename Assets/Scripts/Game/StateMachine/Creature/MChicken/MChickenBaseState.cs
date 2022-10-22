@@ -60,7 +60,7 @@ public class MChickenMoveState : MChickenBaseState
         
         //creature.CreatureData.hp -= collision.gameObject.GetComponent<CreatureDataSO>().attack;
 
-        if (creature.CreatureData.hp < 0)
+        if (creature.CreatureData.currentHP < 0)
             creature.SwitchState(creature.destroyState);
         else
             creature.SwitchState(creature.hurtState);

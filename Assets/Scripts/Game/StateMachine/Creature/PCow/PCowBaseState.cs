@@ -75,18 +75,18 @@ public class PCowChargeState : PCowBaseState , IDamageable
         charge -= Time.deltaTime;
         if (charge <= 0)
             creature.SwitchState(creature.attackState);
+        if (creature.CreatureData.currentHP <= 0)
+            GameObject.Destroy(creature.gameObject  );
+      
     }
     public override void OnTriggerEnter(PCowStateManager creature, Collider collision)
     {
-        //if (collision.gameObject.CompareTag("PlayerAttack"))
-        //{
-        //    float damage = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerData>().attack;
-        //    creature.CreatureData.hp -= damage;
-        //    if (creature.CreatureData.hp <= 0)
-        //        GameObject.Destroy(creature);
-        //    else
-        //        return;
-        //}
+        if (collision.gameObject.CompareTag("PlayerAttack"))
+        {
+            float damage = collision.GetComponentInParent<PlayerData>().attack;
+            creature.CreatureData.currentHP -= damage;
+         
+        }
     }
     public void GetHurt(float damage)
     {
@@ -115,7 +115,4 @@ public class PCowAttackState : PCowBaseState
         
     }
 }
-
-
-
 #endregion
