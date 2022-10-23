@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PCowStateManager : MonoBehaviour
+
+public class RatStateManager : MonoBehaviour
 {
-    public PCowBaseState currentState;
-    public PCowAttackState attackState = new PCowAttackState();
-    public PCowMoveState moveState = new PCowMoveState();
-    public PCowChargeState chargeState = new PCowChargeState();
+    public RatBaseState currentState;
+    public RatAttackState attackState = new RatAttackState();
+    public RatHurtState hurtState = new RatHurtState();
+    public RatMoveState moveState = new RatMoveState();
 
     public CreatureDataSO CreatureData;
 
@@ -18,6 +19,7 @@ public class PCowStateManager : MonoBehaviour
         currentState.EnterState(this);
 
         CreatureData.currentHP = CreatureData.maxHP;
+
     }
     private void FixedUpdate()
     {
@@ -26,16 +28,16 @@ public class PCowStateManager : MonoBehaviour
         else
             currentState.UpdateState(this);
     }
-    private void OnTriggerEnter(Collider collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (currentState == null)
             currentState = moveState;
         else
-            currentState.OnTriggerEnter(this, collision);
+            currentState.OnCollisionEnter(this, collision);
     }
-   
 
-    public void SwitchState(PCowBaseState creatureBaseState)
+    public void SwitchState(RatBaseState creatureBaseState)
     {
         currentState = creatureBaseState;
         creatureBaseState.EnterState(this);

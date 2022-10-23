@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     [SerializeField]
-    CreatureDataSO Data;
+    private CreatureDataSO Data;
 
     public float attack { get { return Data.attackPower; }}
 }

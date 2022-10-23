@@ -6,24 +6,25 @@ public class MChickenStateManager : MonoBehaviour
 {
     public MChickenBaseState currentState;
     public MChickenAttackState attackState = new MChickenAttackState();
-    public MChickenDestroyState destroyState = new MChickenDestroyState();    
     public MChickenHurtState hurtState = new MChickenHurtState();
     public MChickenMoveState moveState = new MChickenMoveState();
-    public MChickenIdleState idleState = new MChickenIdleState();
 
     public CreatureDataSO CreatureData;
 
 
     private void Start()
     {
-        currentState = idleState;
+        currentState = moveState;
 
         currentState.EnterState(this);
+
+        CreatureData.currentHP = CreatureData.maxHP;
+
     }
     private void FixedUpdate()
     {
         if (currentState == null)
-            currentState = idleState;
+            currentState = moveState;
         else
             currentState.UpdateState(this);
     }
@@ -31,7 +32,7 @@ public class MChickenStateManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (currentState == null)
-            currentState = idleState;
+            currentState = moveState;
         else
             currentState.OnCollisionEnter(this, collision);
     }

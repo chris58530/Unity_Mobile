@@ -11,20 +11,13 @@ public abstract class PCowBaseState
         Debug.Log(string.Format("<color=#ff0000>{0}</color>", creature.currentState + "¼Ò¦¡"));
 
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = creature.GetComponent<Rigidbody>();
 
     }
     public virtual void UpdateState(PCowStateManager creature)
     {
-        float distance = Vector3.Distance(playerTrans.position, creature.transform.position);
-        Debug.Log(distance);
-        //if (creature.CreatureData.currentAttackCD > 0)
-        //{
-        //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
-        //}
-        if(distance <= 5 /*&& creature.CreatureData.currentAttackCD <= 0*/)
-        {
-            creature.SwitchState(creature.chargeState);
-        }
+
+        rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));       
     }
    
     public virtual void OnTriggerEnter(PCowStateManager creature, Collider collision)
@@ -43,7 +36,6 @@ public class PCowMoveState : PCowBaseState
     public override void EnterState(PCowStateManager creature)
     {
         base.EnterState(creature);
-        rb = creature.GetComponent<Rigidbody>();
 
     }
 
@@ -54,11 +46,23 @@ public class PCowMoveState : PCowBaseState
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
             rb.transform.Translate(new Vector3(0, 0, 1 * creature.CreatureData.moveSpeed * Time.deltaTime));
+            float distance = Vector3.Distance(playerTrans.position, creature.transform.position);
+            Debug.Log(distance);
+            //if (creature.CreatureData.currentAttackCD > 0)
+            //{
+            //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
+            //}
+            if (distance <= 5 /*&& creature.CreatureData.currentAttackCD <= 0*/)
+            {
+                creature.SwitchState(creature.chargeState);
+            }
         }
         else
         {
             Debug.Log("NO PlAYER");
         }
+       
+       
     }
 }
 public class PCowChargeState : PCowBaseState , IDamageable
@@ -69,9 +73,13 @@ public class PCowChargeState : PCowBaseState , IDamageable
     {
         base.EnterState(creature);
         charge = creature.CreatureData.attackCD;
+
     }
     public override void UpdateState(PCowStateManager creature)
     {
+          
+        base.UpdateState(creature);
+
         charge -= Time.deltaTime;
         if (charge <= 0)
             creature.SwitchState(creature.attackState);
@@ -108,6 +116,8 @@ public class PCowAttackState : PCowBaseState
 
     public override void UpdateState(PCowStateManager creature)
     {
+        rb.transform.LookAt(new Vector3(target.x, creature.transform.position.y, target.z));
+
         creature.transform.position = Vector3.MoveTowards(creature.transform.position, target,creature.CreatureData.moveSpeed*3*Time.deltaTime);
         wait -= Time.deltaTime;
         if (wait <= 0)      

@@ -20,6 +20,9 @@ public class SlimeStateManager : MonoBehaviour
         currentState = idleState;
 
         currentState.EnterState(this);
+
+        CreatureData.currentHP = CreatureData.maxHP;
+
     }
     private void FixedUpdate()
     {

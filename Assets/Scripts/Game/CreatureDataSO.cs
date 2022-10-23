@@ -22,15 +22,16 @@ public class CreatureDataSO : ScriptableObject
     public float hurtCD;
     public float currentHurtCD;
 
-    [Header("血量設定")] //DOTHIS TO GET SET !!!
-    public float MaxHP;
+    [Header("血量設定")] 
+    public float maxHP;
     public float currentHP;
 
-    [Header("掉落物")]
+    [Header("掉落物(隨機取一)")]
+    [SerializeField]
     private GameObject[] items;
     public GameObject dropItems
     {
-        get { return items[Random.Range(0, 1)]; }
+        get => items[Random.Range(0, items.Length)]; 
     }
 
 }

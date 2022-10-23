@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45cfdd5da1550914cafd64aa0c92cd54, type: 3}
   m_Name: MChickenData
   m_EditorClassIdentifier: Assembly-CSharp::CreatureData
-  hp: 0
   moveSpeed: 3
-  attack: 0
-  dropItems: []
+  attackPower: 0
+  attackCD: 0
+  currentAttackCD: 0
+  hurtCD: 0
+  currentHurtCD: 0
+  maxHP: 3
+  currentHP: 0
+  items: []

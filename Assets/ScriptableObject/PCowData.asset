@@ -18,5 +18,6 @@ MonoBehaviour:
   currentAttackCD: 0
   hurtCD: 0
   currentHurtCD: 0
-  MaxHP: 5
-  currentHP: 0
+  maxHP: 5
+  currentHP: 5
+  items: []
