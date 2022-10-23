@@ -26,12 +26,12 @@ public class PCowStateManager : MonoBehaviour
         else
             currentState.UpdateState(this);
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (currentState == null)
             currentState = moveState;
         else
-            currentState.OnTriggerEnter(this, collision);
+            currentState.OnTriggerEnter(this, other);
     }
    
 

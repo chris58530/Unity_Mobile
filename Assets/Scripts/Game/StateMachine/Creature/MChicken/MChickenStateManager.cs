@@ -5,7 +5,6 @@ using UnityEngine;
 public class MChickenStateManager : MonoBehaviour
 {
     public MChickenBaseState currentState;
-    public MChickenAttackState attackState = new MChickenAttackState();
     public MChickenHurtState hurtState = new MChickenHurtState();
     public MChickenMoveState moveState = new MChickenMoveState();
 
@@ -28,14 +27,14 @@ public class MChickenStateManager : MonoBehaviour
         else
             currentState.UpdateState(this);
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (currentState == null)
             currentState = moveState;
         else
-            currentState.OnCollisionEnter(this, collision);
+            currentState.OnTriggerEnter(this, other);
     }
+    
 
     public void SwitchState(MChickenBaseState creatureBaseState)
     {

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45cfdd5da1550914cafd64aa0c92cd54, type: 3}
-  m_Name: PCowData
+  m_Name: RatData
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  attackPower: 1
-  attackCD: 3
+  moveSpeed: 2
+  attackPower: 0
+  attackCD: 0
   currentAttackCD: 0
-  hurtCD: 1
+  hurtCD: 0
   currentHurtCD: 0
-  maxHP: 5
-  currentHP: 0
+  maxHP: 2
+  currentHP: 2
   items: []

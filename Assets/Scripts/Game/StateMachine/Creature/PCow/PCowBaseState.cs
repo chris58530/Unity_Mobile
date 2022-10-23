@@ -20,7 +20,7 @@ public abstract class PCowBaseState
         rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));       
     }
    
-    public virtual void OnTriggerEnter(PCowStateManager creature, Collider collision)
+    public virtual void OnTriggerEnter(PCowStateManager creature, Collider other)
     {
   
     }

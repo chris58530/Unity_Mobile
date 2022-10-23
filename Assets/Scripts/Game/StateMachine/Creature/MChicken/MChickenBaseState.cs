@@ -9,13 +9,17 @@ public abstract class MChickenBaseState
         Debug.Log(string.Format("<color=#fff000>{0}</color>", creature.currentState + "模式"));
     }
     public abstract void UpdateState(MChickenStateManager creature);
-    public virtual void OnCollisionEnter(MChickenStateManager creature, Collision collision)
+    public virtual void OnTriggerEnter(MChickenStateManager creature, Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
-            creature.SwitchState(creature.attackState);   
+        if (other.gameObject.CompareTag("PlayerAttack"))
+        {
+            float damage = other.gameObject.GetComponentInParent<PlayerData>().attack;
+            creature.CreatureData.currentHP -= damage;
+            creature.SwitchState(creature.hurtState);
+        }
     }
 }
-#region NChicken: Idle Move Attack Hurt Destroy
+#region NChicken:  Move  Hurt 
 
 public class MChickenMoveState : MChickenBaseState
 {
@@ -44,46 +48,29 @@ public class MChickenMoveState : MChickenBaseState
 
         }
     }
-    public override void OnCollisionEnter(MChickenStateManager creature, Collision collision)
+    public override void OnTriggerEnter(MChickenStateManager creature, Collider other)
     {
-        base.OnCollisionEnter(creature, collision);
-        
-        //creature.CreatureData.hp -= collision.gameObject.GetComponent<CreatureDataSO>().attack;
+        base.OnTriggerEnter(creature, other);
 
-        if (creature.CreatureData.currentHP < 0)
-            creature.SwitchState(creature.moveState);
-        else
-            creature.SwitchState(creature.hurtState);
-    }
-}
 
-public class MChickenAttackState : MChickenBaseState
-{
-    public override void EnterState(MChickenStateManager creature)
-    {
-        base.EnterState(creature);
-
-        //GameObject.FindObjectOfType<PlayerController>().GetDamage(creature.transform);
-        creature.SwitchState(creature.moveState);
-    }
-    public override void UpdateState(MChickenStateManager creature)
-    {
-        throw new System.NotImplementedException();
+   
     }
 }
 
 
-public class MChickenHurtState : MChickenBaseState
+public class MChickenHurtState : MChickenBaseState //計時僵直時間
 {
-    float hurtCD;
     public override void EnterState(MChickenStateManager creature)
     {
-        base.EnterState(creature);
+        if(creature.CreatureData.currentHP <= 0)
+            GameObject.Destroy(creature.gameObject);
+       base.EnterState(creature);
+       creature.CreatureData.currentHurtCD = creature.CreatureData.hurtCD;
     }
     public override void UpdateState(MChickenStateManager creature)
     {
-        if (hurtCD > 0)
-            hurtCD -= Time.deltaTime;
+        if (creature.CreatureData.currentHurtCD > 0)
+            creature.CreatureData.currentHurtCD -= Time.deltaTime;
         else
             creature.SwitchState(creature.moveState);
     }

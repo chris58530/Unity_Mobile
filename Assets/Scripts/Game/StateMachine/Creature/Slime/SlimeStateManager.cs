@@ -6,9 +6,6 @@ public class SlimeStateManager : MonoBehaviour
 {
     public SlimeBaseState currentState;
 
-    public SlimeIdleState idleState = new SlimeIdleState();
-    public SlimeAttackState attackState = new SlimeAttackState();
-    public SlimeDestroyState destroyState = new SlimeDestroyState();
     public SlimeMoveState moveState = new SlimeMoveState();
     public SlimeHurtState hurtState = new SlimeHurtState();
 
@@ -17,7 +14,7 @@ public class SlimeStateManager : MonoBehaviour
 
     private void Start()    
     {
-        currentState = idleState;
+        currentState = moveState;
 
         currentState.EnterState(this);
 
@@ -27,17 +24,17 @@ public class SlimeStateManager : MonoBehaviour
     private void FixedUpdate()
     {
         if(currentState == null)        
-            currentState = idleState;
+            currentState = moveState;
         else
             currentState.UpdateState(this);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (currentState == null)
-            currentState = idleState;
+            currentState = moveState;
         else
-            currentState.OnCollisionEnter(this, collision);
+            currentState.OnTriggerEnter(this, other);
     }
 
     public void SwitchState(SlimeBaseState creatureBaseState)

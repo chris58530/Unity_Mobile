@@ -6,6 +6,7 @@ public class RatStateManager : MonoBehaviour
 {
     public RatBaseState currentState;
     public RatAttackState attackState = new RatAttackState();
+    public RatIdleState idleState = new RatIdleState();
     public RatHurtState hurtState = new RatHurtState();
     public RatMoveState moveState = new RatMoveState();
 
@@ -14,7 +15,7 @@ public class RatStateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = moveState;
+        currentState = idleState;
 
         currentState.EnterState(this);
 
@@ -24,17 +25,17 @@ public class RatStateManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (currentState == null)
-            currentState = moveState;
+            currentState = idleState;
         else
             currentState.UpdateState(this);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (currentState == null)
-            currentState = moveState;
+            currentState = idleState;
         else
-            currentState.OnCollisionEnter(this, collision);
+            currentState.OnTriggerEnter(this, other);
     }
 
     public void SwitchState(RatBaseState creatureBaseState)

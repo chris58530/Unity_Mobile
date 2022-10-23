@@ -4,37 +4,62 @@ using UnityEngine;
 
 public abstract  class RatBaseState 
 {
+    protected Transform playerTrans;
+    protected Rigidbody rb; 
     public virtual void EnterState(RatStateManager creature)
     {
         Debug.Log(string.Format("<color=#fff000>{0}</color>", creature.currentState + "¼Ò¦¡"));
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = creature.GetComponent<Rigidbody>();
     }
     public abstract void UpdateState(RatStateManager creature);
-    public virtual void OnCollisionEnter(RatStateManager creature, Collision collision)
+    public virtual void OnTriggerEnter(RatStateManager creature, Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
-            creature.SwitchState(creature.attackState);
+        if (other.gameObject.CompareTag("PlayerAttack"))
+        {
+            float damage = other.gameObject.GetComponentInParent<PlayerData>().attack;
+            creature.CreatureData.currentHP -= damage;
+            creature.SwitchState(creature.hurtState);
+            if (creature.CreatureData.currentHP <= 0)
+                GameObject.Destroy(creature.gameObject);
+        }
     }
 }
 #region NChicken: Idle Move Attack Hurt Destroy
 public class RatIdleState : RatBaseState
 {
+    public override void EnterState(RatStateManager creature)
+    {
+        base.EnterState(creature);
+        creature.transform.position += new Vector3(0, -3, 0);
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+    }
     public override void UpdateState(RatStateManager creature)
     {
-        throw new System.NotImplementedException();
+        float distance = Vector3.Distance(playerTrans.position, creature.transform.position);
+        Debug.Log(distance);
+        //if (creature.CreatureData.currentAttackCD > 0)
+        //{
+        //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
+        //}
+        if (distance <= 5 /*&& creature.CreatureData.currentAttackCD <= 0*/)
+        {
+            creature.SwitchState(creature.moveState);
+            creature.transform.position += new Vector3(0, 4, 0);
+
+        }
     }
 }
 
 public class RatMoveState : RatBaseState
 {
-    Transform playerTrans;
-    Rigidbody rb;
-
+   
 
     public override void EnterState(RatStateManager creature)
     {
         base.EnterState(creature);
-        rb = creature.GetComponent<Rigidbody>();
-        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+
+        rb.constraints = RigidbodyConstraints.None;
 
     }
 
@@ -51,9 +76,9 @@ public class RatMoveState : RatBaseState
 
         }
     }
-    public override void OnCollisionEnter(RatStateManager creature, Collision collision)
+    public override void OnTriggerEnter(RatStateManager creature, Collider other)
     {
-        base.OnCollisionEnter(creature, collision);
+        base.OnTriggerEnter(creature, other);
 
         //creature.CreatureData.hp -= collision.gameObject.GetComponent<CreatureDataSO>().attack;
 
