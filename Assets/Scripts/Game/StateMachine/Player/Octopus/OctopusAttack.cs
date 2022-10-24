@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class OctopusAttack : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject attackObject;
     public void Attack()
     {
         Debug.Log("PlayerAttack!");
-        gameObject.GetComponentInChildren<CapsuleCollider>().enabled = true;
-        gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
+        attackObject.GetComponent<CapsuleCollider>().enabled = true;
+        attackObject.GetComponent<MeshRenderer>().enabled = true;
         StartCoroutine(Enabled());
         //³]¸m°ÊµeEvent
     }
@@ -17,8 +19,8 @@ public class OctopusAttack : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("PlayerDontAttack!");
 
-        gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
-        gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false;
+        attackObject.GetComponent<MeshRenderer>().enabled = false;
+        attackObject.GetComponent<CapsuleCollider>().enabled = false;
 
     }
 

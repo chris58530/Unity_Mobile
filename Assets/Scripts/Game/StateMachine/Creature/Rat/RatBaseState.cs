@@ -33,6 +33,8 @@ public class RatIdleState : RatBaseState
         base.EnterState(creature);
         creature.transform.position += new Vector3(0, -3, 0);
         rb.constraints = RigidbodyConstraints.FreezePosition;
+        BoxCollider boxCollider = creature.GetComponent<BoxCollider>();
+        boxCollider.isTrigger = true;
     }
     public override void UpdateState(RatStateManager creature)
     {
@@ -42,11 +44,12 @@ public class RatIdleState : RatBaseState
         //{
         //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
         //}
-        if (distance <= 5 /*&& creature.CreatureData.currentAttackCD <= 0*/)
+        if (distance <=   15 /*&& creature.CreatureData.currentAttackCD <= 0*/)
         {
             creature.SwitchState(creature.moveState);
             creature.transform.position += new Vector3(0, 4, 0);
-
+            BoxCollider boxCollider = creature.GetComponent<BoxCollider>();
+            boxCollider.isTrigger = false;
         }
     }
 }
