@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CreatureIdleState : CreatureBaseState
 {
-    public float RamdomTime;
+    public float RandomTime;
     public override void EnterState(CreatureStateManager creature)
     {
-        RamdomTime = Random.Range(1, 2);
+        RandomTime = Random.Range(1, 2);
         Debug.Log("Idle EnterState");
-        Debug.Log(RamdomTime);
+        Debug.Log(RandomTime);
 
     }
     public override void UpdateState(CreatureStateManager creature)
     {
         Debug.Log("Idle UpdateState");
-        RamdomTime -=Time.deltaTime;
+        RandomTime -= Time.deltaTime;
 
-        if (RamdomTime <= 0)
+        if (RandomTime <= 0)
         {
             creature.SwitchState(creature.moveState);
         }

@@ -12,6 +12,5 @@ public abstract class CreatureBaseState
             creature.SwitchState(creature.attackState);
         }
     }
-   
-
 }
+
