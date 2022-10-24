@@ -52,7 +52,7 @@ public class PCowMoveState : PCowBaseState
             //{
             //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
             //}
-            if (distance <= 5 /*&& creature.CreatureData.currentAttackCD <= 0*/)
+            if (distance <= 15 /*&& creature.CreatureData.currentAttackCD <= 0*/)
             {
                 creature.SwitchState(creature.chargeState);
             }
