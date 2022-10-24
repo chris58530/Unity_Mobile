@@ -1,90 +1,72 @@
-Shader "MSLGiVG/ToonShading"
+
+
+Shader "Unlit/ToonShader"
 {
-	Properties
-	{
-		_MainTex ("Texture", 2D) = "white" {}
-		_ToonLut ("Toon LUT", 2D) = "white" {}
-		_Color ("Color", Color) = (1,1,1,1)
-		_RimColor ("Rim Color", Color) = (1,1,1,1)
-		_RimPower ("Rim Power", Range(0, 10)) = 1
-	}
-	SubShader
-	{
-		Tags
-		{
-			"RenderType"="Opaque"
-		}
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "white" {}
+        _Brightness("Brightness", Range(0,1)) = 0.3
+        _Strength("Strength", Range(0,1)) = 0.5
+        _Color("Color", COLOR) = (1,1,1,1)
+        _Detail("Detail", Range(0,1)) = 0.3
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        LOD 100
 
-		Pass
-		{
-			Tags
-			{
-				"LightMode" = "ForwardBase"
-			}
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
 
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			#pragma multi_compile_fwdbase
+            #include "UnityCG.cginc"
 
-			#include "UnityCG.cginc"
-			#include "AutoLight.cginc"
-			#include "Lighting.cginc"
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+                float3 normal : NORMAL;
+            };
 
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float3 normal: NORMAL;
-				float2 uv : TEXCOORD0;
-			};
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+                half3 worldNormal: NORMAL;
+            };
 
-			struct v2f
-			{
-				float4 pos : SV_POSITION;
-				float2 uv : TEXCOORD0;
-				float3 normal : TEXCOORD1;
-				float3 viewDir : TEXCOORD2;
-			};
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+            float _Brightness;
+            float _Strength;
+            float4 _Color;
+            float _Detail;
 
-			sampler2D _MainTex;
-			sampler2D _ToonLut;
-			half3 _RimColor;
-			half _RimPower;
-			fixed4 _Color;
+            float Toon(float3 normal, float3 lightDir) {
+                float NdotL = max(0.0,dot(normalize(normal), normalize(lightDir)));
 
-			v2f vert (appdata v)
-			{
-				v2f o;
+                return floor(NdotL / _Detail);
+            }
 
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.uv = v.uv;
-				o.normal = UnityObjectToWorldNormal(v.normal);
-				o.viewDir = normalize(UnityWorldSpaceViewDir(mul(unity_ObjectToWorld, v.vertex)));
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                return o;
+            }
 
-				return o;
-			}
-			
-			fixed4 frag (v2f i) : SV_Target
-			{
-				float3 normal = normalize(i.normal);
-				float ndotl = dot(normal, _WorldSpaceLightPos0);
-				float ndotv = saturate(dot(normal, i.viewDir));
-
-				float3 lut = tex2D(_ToonLut, float2(ndotl, 0));
-				float3 rim = _RimColor * pow(1 - ndotv, _RimPower) * ndotl;
-
-				float3 directDiffuse = lut * _LightColor0;
-				float3 indirectDiffuse = unity_AmbientSky;
-
-				fixed4 col = tex2D(_MainTex, i.uv) * _Color;
-				col.rgb *= directDiffuse + indirectDiffuse;
-				col.rgb += rim;
-				col.a = 1.0;
-
-				return col;
-			}
-			ENDCG
-		}
-	}
-	Fallback "Diffuse"
+            fixed4 frag (v2f i) : SV_Target
+            {
+                // sample the texture
+                fixed4 col = tex2D(_MainTex, i.uv);
+                col *= Toon(i.worldNormal, _WorldSpaceLightPos0.xyz) * _Strength * _Color + _Brightness;
+                return col;
+            }
+            ENDCG
+        }
+    }
 }
