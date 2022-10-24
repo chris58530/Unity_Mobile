@@ -40,7 +40,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Brightness: 0.741
-    - _Detail: 0.501
+    - _Detail: 1
     - _Strength: 0.318
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
