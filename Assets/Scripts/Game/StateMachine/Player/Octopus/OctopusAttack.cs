@@ -16,7 +16,7 @@ public class OctopusAttack : MonoBehaviour
     }
     IEnumerator Enabled()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.25f);
         Debug.Log("PlayerDontAttack!");
 
         attackObject.GetComponent<MeshRenderer>().enabled = false;

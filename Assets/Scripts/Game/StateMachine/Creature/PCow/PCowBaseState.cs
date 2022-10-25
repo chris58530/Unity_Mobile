@@ -118,7 +118,7 @@ public class PCowAttackState : PCowBaseState
     {
         rb.transform.LookAt(new Vector3(target.x, creature.transform.position.y, target.z));
 
-        creature.transform.position = Vector3.MoveTowards(creature.transform.position, target,creature.CreatureData.moveSpeed*3*Time.deltaTime);
+        creature.transform.position = Vector3.MoveTowards(creature.transform.position, target,creature.CreatureData.moveSpeed*15*Time.deltaTime);
         wait -= Time.deltaTime;
         if (wait <= 0)      
             creature.SwitchState(creature.moveState);

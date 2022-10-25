@@ -44,7 +44,7 @@ public class RatIdleState : RatBaseState
         //{
         //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
         //}
-        if (distance <=   15 /*&& creature.CreatureData.currentAttackCD <= 0*/)
+        if (distance <=   10 /*&& creature.CreatureData.currentAttackCD <= 0*/)
         {
             creature.SwitchState(creature.moveState);
             creature.transform.position += new Vector3(0, 4, 0);
