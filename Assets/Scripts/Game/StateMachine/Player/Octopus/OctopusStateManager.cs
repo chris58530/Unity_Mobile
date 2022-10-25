@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class OctopusStateManager : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class OctopusStateManager : MonoBehaviour
     public CreatureDataSO CreatureData;
 
     public FixedJoystick fixedJoystick;
+    private Vector3 fixedJoystickPos;
     private void Start()
     {
         currentState = idleState;
         CreatureData.currentAttackCD = CreatureData.attackCD;
 
         currentState.EnterState(this);
+        fixedJoystickPos = fixedJoystick.transform.position;
+
     }
     private void FixedUpdate()
     {
@@ -45,4 +49,6 @@ public class OctopusStateManager : MonoBehaviour
         currentState = creatureBaseState;
         creatureBaseState.EnterState(this);
     }
+
+
 }
