@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
@@ -20,10 +22,20 @@ public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
 
     [SerializeField]
     private float targetSize;
+
+
+    //UI TITLE,INTRODUTION
+    [SerializeField]
+    private TextMeshProUGUI titleText;
+    [SerializeField]
+    private TextMeshProUGUI introtuctionText;
+
+
     private void Start()
     {
         panelLocation = transform.position;
         Debug.Log(Screen.width);
+        //titleText.text = "hello~~";
     }
 
 
