@@ -7,13 +7,19 @@ public class PanelSwipe : MonoBehaviour, IDragHandler,IEndDragHandler
 {
     private Vector3 panelLocation;
 
-    int currentChild=3;
+    [SerializeField]
+    private int currentChild=3;
+    [SerializeField]
+    private int childIndex= 0;
 
     [SerializeField]
     private float percentThreshold = 0.2f;
 
     [SerializeField]
     private float easing = 0.5f;
+
+    [SerializeField]
+    private float targetSize;
     private void Start()
     {
         panelLocation = transform.position;
@@ -32,7 +38,7 @@ public class PanelSwipe : MonoBehaviour, IDragHandler,IEndDragHandler
         if (Mathf.Abs(percentage) >= percentThreshold)
         {
             Vector3 newLocation = panelLocation;
-            if(percentage > 0 && currentChild < 5)
+            if(percentage > 0 && currentChild < childIndex)
             {
                 newLocation += new Vector3(-Screen.width, 0, 0);
                 currentChild++;
