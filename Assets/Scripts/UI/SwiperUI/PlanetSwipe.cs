@@ -33,9 +33,15 @@ public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
 
     private void Start()
     {
+        for (int i = 0; i < currentChild; i++)
+        {
+            transform.position += new Vector3(-Screen.width + 475, 0, 0);
+        }
+
+
         panelLocation = transform.position;
-        Debug.Log(Screen.width);
         //titleText.text = "hello~~";
+        Debug.Log(Screen.width);
     }
 
 
@@ -56,7 +62,7 @@ public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
                 newLocation += new Vector3(-Screen.width + 475, 0, 0);//插在這
                 currentChild++;
             }
-            else if (percentage < 0 && currentChild > 1)
+            else if (percentage < 0 && currentChild > 0)
             {
                 newLocation += new Vector3(Screen.width - 475, 0, 0);//插在這
                 currentChild--;
