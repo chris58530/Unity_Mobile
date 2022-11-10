@@ -682,6 +682,7 @@ GameObject:
   - component: {fileID: 606814698}
   - component: {fileID: 606814697}
   - component: {fileID: 606814696}
+  - component: {fileID: 606814700}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -789,7 +790,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606814691}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c9fed1cb8f44dc47b141cdef2b12c79, type: 3}
   m_Name: 
@@ -825,6 +826,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: cd57288eb63c5a941abb124fe815a1f2, type: 2}
+--- !u!114 &606814700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606814691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb8715e5459023a42ac04484df99f009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CreatureData: {fileID: 11400000, guid: cd57288eb63c5a941abb124fe815a1f2, type: 2}
+  fixedJoystick: {fileID: 2929252283677587810}
 --- !u!1 &1110598292
 GameObject:
   m_ObjectHideFlags: 0
