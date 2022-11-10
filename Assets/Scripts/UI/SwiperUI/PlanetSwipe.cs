@@ -10,9 +10,9 @@ public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
     private Vector3 panelLocation;
 
     [SerializeField]
-    private int currentChild = 3;
+    private int currentChild = 0;
     [SerializeField]
-    private int childIndex = 0;
+    private Transform[] childIndex;
 
     [SerializeField]
     private float percentThreshold = 0.2f;
@@ -33,10 +33,7 @@ public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
 
     private void Start()
     {
-        for (int i = 0; i < currentChild; i++)
-        {
-            transform.position += new Vector3(-Screen.width + 475, 0, 0);
-        }
+       
 
 
         panelLocation = transform.position;
@@ -57,14 +54,19 @@ public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
         if (Mathf.Abs(percentage) >= percentThreshold)
         {
             Vector3 newLocation = panelLocation;
-            if (percentage > 0 && currentChild < childIndex)
+            if (percentage > 0 && currentChild < childIndex.Length)
             {
-                newLocation += new Vector3(-Screen.width + 475, 0, 0);//插在這
+
+                //newLocation = new Vector3(childIndex[currentChild].position.x, transform.position.y,0);
+                newLocation += new Vector3(-Screen.width/2, 0, 0);//插在這
+
                 currentChild++;
+
+                Debug.Log(currentChild);
             }
             else if (percentage < 0 && currentChild > 0)
             {
-                newLocation += new Vector3(Screen.width - 475, 0, 0);//插在這
+                newLocation += new Vector3(Screen.width/2, 0, 0);//插在這
                 currentChild--;
             }
             StartCoroutine(SmoothMove(transform.position, newLocation, easing));
