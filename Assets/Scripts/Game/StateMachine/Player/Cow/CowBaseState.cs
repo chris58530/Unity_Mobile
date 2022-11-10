@@ -65,25 +65,45 @@ public class CowAttackState : CowBaseState
     public override void EnterState(CowStateManager creature)
     {
         base.EnterState(creature);
+        rb.AddForce(creature.transform.forward* 100);
+        creature.StartCoroutine(TimeToIdle(creature));
 
     }
     public override void UpdateState(CowStateManager creature)
     {
         //animation here
         base.UpdateState(creature);
+        if (creature.CreatureData.currentAttackCD <= 0)
+        {
+           creature.CreatureData.currentAttackCD = creature.CreatureData.attackCD;
+        }
+    }
+    IEnumerator TimeToIdle(CowStateManager creature)
+    {
+        Debug.Log("TimeToIdle");
+        yield return new WaitForSeconds(1);
+        creature.SwitchState(creature.hurtState);
     }
 }
 public class CowMoveState : CowBaseState
 {
+    private FixedJoystick _joystick;
+
     public override void EnterState(CowStateManager creature)
     {
         base.EnterState(creature);
+        _joystick = creature.fixedJoystick;
 
     }
     public override void UpdateState(CowStateManager creature)
     {
         //animation here
         base.UpdateState(creature);
+        rb.velocity = new Vector3(creature.fixedJoystick.Horizontal * creature.CreatureData.moveSpeed, rb.velocity.y, creature.fixedJoystick.Vertical * creature.CreatureData.moveSpeed);
+        if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+        {
+            creature.transform.rotation = Quaternion.LookRotation(rb.velocity);
+        }
     }
 }
 public class CowHurtState : CowBaseState
@@ -92,9 +112,6 @@ public class CowHurtState : CowBaseState
     {
         base.EnterState(creature);
     }
-    public override void UpdateState(CowStateManager creature)
-    {
-        base.UpdateState(creature);
-    }
+   
 }
 #endregion

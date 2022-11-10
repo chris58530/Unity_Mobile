@@ -47,7 +47,7 @@ public class PCowMoveState : PCowBaseState
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
             rb.transform.Translate(new Vector3(0, 0, 1 * creature.CreatureData.moveSpeed * Time.deltaTime));
             float distance = Vector3.Distance(playerTrans.position, creature.transform.position);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             //if (creature.CreatureData.currentAttackCD > 0)
             //{
             //    creature.CreatureData.currentAttackCD -= Time.deltaTime;

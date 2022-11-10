@@ -39,7 +39,7 @@ public class RatIdleState : RatBaseState
     public override void UpdateState(RatStateManager creature)
     {
         float distance = Vector3.Distance(playerTrans.position, creature.transform.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         //if (creature.CreatureData.currentAttackCD > 0)
         //{
         //    creature.CreatureData.currentAttackCD -= Time.deltaTime;
