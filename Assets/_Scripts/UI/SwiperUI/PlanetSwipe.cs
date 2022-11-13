@@ -36,17 +36,15 @@ public class PlanetSwipe : MonoBehaviour
         {
             if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - distance / 2)
             {
-                transform.GetChild(i).DOScale(new Vector2(1.3f, 1.3f), 0.1f).SetEase(Ease.InOutBounce).OnComplete(() =>
-                {
-                    
-                });
+                transform.GetChild(i).DOScale(new Vector2(1.3f, 1.3f), 0.1f).SetEase(Ease.InOutBounce);
+                transform.GetChild(i).GetComponent<RawImage>().color = Color.white;
                 //transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
                 for (int a = 0; a < pos.Length; a++)
                 {
                     if (a != i)
                     {
                         transform.GetChild(a).DOScale(new Vector2(0.6f, 0.6f), 0.1f).SetEase(Ease.InOutBounce);
-
+                        transform.GetChild(a).GetComponent<RawImage>().color = Color.gray;
                     }
                 }
             }
