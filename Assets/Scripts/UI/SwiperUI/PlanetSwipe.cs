@@ -5,87 +5,56 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class PlanetSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
+public class PlanetSwipe : MonoBehaviour
 {
-    private Vector3 panelLocation;
-
-    [SerializeField]
-    private int currentChild = 0;
-    [SerializeField]
-    private Transform[] childIndex;
-
-    [SerializeField]
-    private float percentThreshold = 0.2f;
-
-    [SerializeField]
-    private float easing = 0.5f;
-
-    [SerializeField]
-    private float targetSize;
-
-
-    //UI TITLE,INTRODUTION
-    [SerializeField]
-    private TextMeshProUGUI titleText;
-    [SerializeField]
-    private TextMeshProUGUI introtuctionText;
-
-
-    private void Start()
+    public GameObject scrollBar;
+    float scrollPos = 0;
+    float[] pos;
+    void Update()
     {
-       
-
-
-        panelLocation = transform.position;
-        //titleText.text = "hello~~";
-        Debug.Log(Screen.width);
-    }
-
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        float difference = eventData.pressPosition.x - eventData.position.x;
-        transform.position = panelLocation - new Vector3(difference, 0, 0);
-
-    }
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        float percentage = (eventData.pressPosition.x - eventData.position.x) / Screen.width;
-        if (Mathf.Abs(percentage) >= percentThreshold)
+        pos = new float[transform.childCount];
+        float distance = 1f / (pos.Length - 1f);
+        for (int i = 0; i < pos.Length; i++)
         {
-            Vector3 newLocation = panelLocation;
-            if (percentage > 0 && currentChild < childIndex.Length)
-            {
-
-                //newLocation = new Vector3(childIndex[currentChild].position.x, transform.position.y,0);
-                newLocation += new Vector3(-Screen.width/2, 0, 0);//插在這
-
-                currentChild++;
-
-                Debug.Log(currentChild);
-            }
-            else if (percentage < 0 && currentChild > 0)
-            {
-                newLocation += new Vector3(Screen.width/2, 0, 0);//插在這
-                currentChild--;
-            }
-            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
-            panelLocation = newLocation;
+            pos[i] = distance * i;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            scrollPos = scrollBar.GetComponent<Scrollbar>().value;
         }
         else
         {
-            StartCoroutine(SmoothMove(transform.position, panelLocation, easing));
-
+            for (int i = 0; i < pos.Length; i++)
+            {
+                if(scrollPos < pos[i] + (distance/2) && scrollPos > pos[i] - distance / 2)
+                {
+                    scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, pos[i], 0.05f);
+                }
+            }
         }
-    }
-    IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds)
-    {
-        float t = 0;
-        while (t <= 1.0f)
+        for (int i = 0; i < pos.Length; i++)
         {
-            t += Time.deltaTime / seconds;
-            transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, t));
-            yield return null;
+            if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - distance / 2)
+            {
+                transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
+                for (int a = 0; a < pos.Length; a++)
+                {
+                    if (a != i)
+                    {
+                        transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(0.6f, 0.6f), 0.1f);
+                    }
+                }
+            }
         }
     }
+
+    //public void OnDrag(PointerEventData eventData)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+
+    //public void OnEndDrag(PointerEventData eventData)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }
