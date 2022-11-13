@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems;
-
+using DG.Tweening;
 public class PlanetSwipe : MonoBehaviour
 {
     public GameObject scrollBar;
@@ -29,6 +28,7 @@ public class PlanetSwipe : MonoBehaviour
                 if(scrollPos < pos[i] + (distance/2) && scrollPos > pos[i] - distance / 2)
                 {
                     scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, pos[i], 0.05f);
+
                 }
             }
         }
@@ -36,12 +36,17 @@ public class PlanetSwipe : MonoBehaviour
         {
             if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - distance / 2)
             {
-                transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
+                transform.GetChild(i).DOScale(new Vector2(1.3f, 1.3f), 0.1f).SetEase(Ease.InOutBounce).OnComplete(() =>
+                {
+                    
+                });
+                //transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
                 for (int a = 0; a < pos.Length; a++)
                 {
                     if (a != i)
                     {
-                        transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(0.6f, 0.6f), 0.1f);
+                        transform.GetChild(a).DOScale(new Vector2(0.6f, 0.6f), 0.1f).SetEase(Ease.InOutBounce);
+
                     }
                 }
             }
