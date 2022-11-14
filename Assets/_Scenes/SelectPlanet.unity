@@ -532,7 +532,6 @@ GameObject:
   m_Component:
   - component: {fileID: 367805550}
   - component: {fileID: 367805549}
-  - component: {fileID: 367805548}
   - component: {fileID: 367805547}
   m_Layer: 0
   m_Name: PlanetCamera (1)
@@ -574,14 +573,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &367805548
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367805546}
-  m_Enabled: 1
 --- !u!20 &367805549
 Camera:
   m_ObjectHideFlags: 0
@@ -1047,7 +1038,6 @@ GameObject:
   m_Component:
   - component: {fileID: 660875075}
   - component: {fileID: 660875074}
-  - component: {fileID: 660875073}
   - component: {fileID: 660875072}
   m_Layer: 0
   m_Name: PlanetCamera (3)
@@ -1089,14 +1079,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &660875073
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660875071}
-  m_Enabled: 1
 --- !u!20 &660875074
 Camera:
   m_ObjectHideFlags: 0
@@ -1449,7 +1431,6 @@ GameObject:
   m_Component:
   - component: {fileID: 995249400}
   - component: {fileID: 995249399}
-  - component: {fileID: 995249398}
   - component: {fileID: 995249397}
   m_Layer: 0
   m_Name: PlanetCamera (4)
@@ -1491,14 +1472,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &995249398
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995249396}
-  m_Enabled: 1
 --- !u!20 &995249399
 Camera:
   m_ObjectHideFlags: 0
@@ -2822,7 +2795,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1801954731}
   - component: {fileID: 1801954730}
-  - component: {fileID: 1801954729}
   - component: {fileID: 1801954728}
   m_Layer: 0
   m_Name: PlanetCamera (2)
@@ -2864,14 +2836,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1801954729
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801954727}
-  m_Enabled: 1
 --- !u!20 &1801954730
 Camera:
   m_ObjectHideFlags: 0
