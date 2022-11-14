@@ -27,7 +27,7 @@ public class PlanetSwipe : MonoBehaviour
             {
                 if(scrollPos < pos[i] + (distance/2) && scrollPos > pos[i] - distance / 2)
                 {
-                    scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, pos[i], 0.05f);
+                    scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, pos[i], 0.01f);
 
                 }
             }

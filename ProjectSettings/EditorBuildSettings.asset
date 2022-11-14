@@ -13,8 +13,8 @@ EditorBuildSettings:
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/_Scenes/SelectPlanet.unity
-    guid: 3e7f8088d6d05c64882e47d41e5e8931
+    guid: e103e412d00ae3440bf431dc8f347d7c
   - enabled: 1
     path: Assets/_Scenes/SelectCharacter.unity
-    guid: e103e412d00ae3440bf431dc8f347d7c
+    guid: d4e825080976a5f43954ded3ed7527bf
   m_configObjects: {}
