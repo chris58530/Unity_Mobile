@@ -5,10 +5,24 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 public class PlanetSwipe : MonoBehaviour
-{
-    public GameObject scrollBar;
+{ 
+    #region ·Æ°ÊUI
+    [SerializeField] 
+    private GameObject scrollBar;
     float scrollPos = 0;
     float[] pos;
+    #endregion
+
+    [SerializeField]
+    private PlanetDataBaseSO _planetDataBase;
+
+    [SerializeField]
+    private TextMeshProUGUI _planetTitle;
+
+    [SerializeField]
+    private TextMeshProUGUI _planetIntroduce;
+
+   
     void Update()
     {
         pos = new float[transform.childCount];
@@ -38,6 +52,7 @@ public class PlanetSwipe : MonoBehaviour
             {
                 transform.GetChild(i).DOScale(new Vector2(1.3f, 1.3f), 0.1f).SetEase(Ease.InOutBounce);
                 transform.GetChild(i).GetComponent<RawImage>().color = Color.white;
+                UpdatePlanet(i);
                 //transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
                 for (int a = 0; a < pos.Length; a++)
                 {
@@ -50,14 +65,11 @@ public class PlanetSwipe : MonoBehaviour
             }
         }
     }
-
-    //public void OnDrag(PointerEventData eventData)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public void OnEndDrag(PointerEventData eventData)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
+    private void UpdatePlanet(int selectedOption)
+    {
+        Planet planet = _planetDataBase.GetPlanet(selectedOption);
+        _planetTitle.text = planet.planetTitle;
+        _planetIntroduce.text = planet.planetIntroduce;
+    }
+  
 }

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PlanetData
   m_EditorClassIdentifier: 
   _planet:
-  - planetTitle: Green Planet
-    planetIntroduce: Green Green Green Green Green
-  - planetTitle: Yellow Planet
-    planetIntroduce: Yellow Yellow Yellow Yellow Yellow
-  - planetTitle: Blue Planet
-    planetIntroduce: Blue Blue Blue Blue Blue
-  - planetTitle: Red Planet
-    planetIntroduce: Red Red Red Red Red
+  - planetTitle: Grassland Planet
+    planetIntroduce: Lush green grassland is beautiful your wellcome!
+  - planetTitle: Desert Planet
+    planetIntroduce: 'Barren desert and nothing here... '
+  - planetTitle: Lava Planet
+    planetIntroduce: Lava volcano terrain very hot...
+  - planetTitle: Ice Planet
+    planetIntroduce: Very cold very danger do not come...
