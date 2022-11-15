@@ -21,12 +21,12 @@ class Tile //Tile類別建構子
 
 public class InfinitePlane : MonoBehaviour
 {
-    public GameObject plane;
+    public GameObject[] plane;
     public GameObject player;
 
     int planeSize = 10;
-    int halfTilesX = 5;
-    int halfTilesZ = 5;
+    int halfTilesX = 10;
+    int halfTilesZ = 10;
 
     Vector3 startPos;
 
@@ -45,7 +45,7 @@ public class InfinitePlane : MonoBehaviour
             for (int z = -halfTilesZ; z < halfTilesZ; z++)
             {
                 Vector3 pos =new Vector3((x*planeSize+startPos.x) ,0 , (z*planeSize+startPos.z));
-                GameObject t = Instantiate(plane, pos, Quaternion.identity);
+                GameObject t = Instantiate(plane[Random.Range(0,plane.Length)], pos, Quaternion.identity);
 
                 //紀錄新的 tile 位置
                 string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_"+((int)(pos.z)).ToString();
@@ -81,7 +81,7 @@ public class InfinitePlane : MonoBehaviour
                         string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                         if (!tiles.ContainsKey(tileName))
                         {
-                            GameObject t = Instantiate(plane, pos, Quaternion.identity);
+                            GameObject t = Instantiate(plane[Random.Range(0, plane.Length)], pos, Quaternion.identity);
                             t.name = tileName;
                             Tile tile = new Tile(t, updateTime);
                             tiles.Add(tileName, tile);

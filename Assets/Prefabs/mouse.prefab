@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2169603970904281759}
   - component: {fileID: 3837869142133032491}
   - component: {fileID: 4432529230618870080}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LEAF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2131830050552558438}
   - component: {fileID: 6653677896749865682}
   - component: {fileID: 5195556961858991910}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mouse.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,8 @@ GameObject:
   - component: {fileID: 1585182288}
   - component: {fileID: 1585182286}
   - component: {fileID: 1585182287}
-  m_Layer: 0
+  - component: {fileID: 6663186500343564443}
+  m_Layer: 7
   m_Name: mouse
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -245,6 +246,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatureData: {fileID: 11400000, guid: 39c4ea26ec38afd48abb9c53b0c34e46, type: 2}
+--- !u!114 &6663186500343564443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990994212668650131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb40e0e25a538b749a8147cf65ff17f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6329096891158362628
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +269,7 @@ GameObject:
   - component: {fileID: 8115612419070732686}
   - component: {fileID: 2530826805210129818}
   - component: {fileID: 7850212870295144448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PLANT
   m_TagString: Untagged
   m_Icon: {fileID: 0}

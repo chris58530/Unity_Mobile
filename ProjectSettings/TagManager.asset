@@ -13,8 +13,8 @@ TagManager:
   - GameObject
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
