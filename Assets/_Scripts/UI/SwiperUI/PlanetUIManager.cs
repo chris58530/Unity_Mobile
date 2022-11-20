@@ -5,12 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class PlanetUIManager : MonoBehaviour
 {
-    public void ChangeToMenu()
+    public void Start()
     {
-        SceneManager.UnloadSceneAsync("SceneName");
+    }
+    public void ChangeScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
     public void SelectPlanet()
     {
+        SaveSystem.SaveByJson(SaveSystem.PlanetSave, SavingData());
+        SceneManager.LoadScene("MenuScene");
 
     }
+    SaveData SavingData()
+    {
+        var saveData = new SaveData();
+        saveData.selectPlanet = PlanetSwipe.currentPlanet;
+        saveData.planetBarValue = PlanetSwipe.currentBarValue;
+        return saveData;
+    }
+ 
 }

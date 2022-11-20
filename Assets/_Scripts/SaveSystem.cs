@@ -5,6 +5,9 @@ using System.IO;
 
 public static class SaveSystem
 {
+    const string SCELECT_PLANET = "Player.Planet.sav";
+    public static string PlanetSave => SCELECT_PLANET;
+
     public static void SaveByJson(string fileName , object data)
     {
         var json = JsonUtility.ToJson(data);    
@@ -28,4 +31,5 @@ public static class SaveSystem
         File.Delete(path);
         Debug.LogWarning("Delete : "+fileName);
     }
+ 
 }

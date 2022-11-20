@@ -22,4 +22,5 @@ public class Planet
 {
     public string planetTitle;
     public string planetIntroduce;
+    public GameObject planetObject;
 }

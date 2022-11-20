@@ -22,7 +22,16 @@ public class PlanetSwipe : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _planetIntroduce;
 
-   
+    public static int currentPlanet;
+    public static float currentBarValue;
+
+    private void Awake()
+    {
+        string planetConst = SaveSystem.PlanetSave; //SaveSystem.const
+        var saveData = SaveSystem.LoadFormJson<SaveData>(planetConst);
+        scrollBar.GetComponent<Scrollbar>().value = saveData.planetBarValue;
+
+    }
     void Update()
     {
         pos = new float[transform.childCount];
@@ -43,6 +52,8 @@ public class PlanetSwipe : MonoBehaviour
                 {
                     scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, pos[i], 0.01f);
 
+                    currentBarValue = scrollBar.GetComponent<Scrollbar>().value;
+
                 }
             }
         }
@@ -52,7 +63,8 @@ public class PlanetSwipe : MonoBehaviour
             {
                 transform.GetChild(i).DOScale(new Vector2(1.3f, 1.3f), 0.1f).SetEase(Ease.InOutBounce);
                 transform.GetChild(i).GetComponent<RawImage>().color = Color.white;
-                UpdatePlanet(i);
+                currentPlanet = i;
+                UpdatePlanetInfo(i);
                 //transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
                 for (int a = 0; a < pos.Length; a++)
                 {
@@ -65,7 +77,7 @@ public class PlanetSwipe : MonoBehaviour
             }
         }
     }
-    private void UpdatePlanet(int selectedOption)
+    private void UpdatePlanetInfo(int selectedOption)
     {
         Planet planet = _planetDataBase.GetPlanet(selectedOption);
         _planetTitle.text = planet.planetTitle;
