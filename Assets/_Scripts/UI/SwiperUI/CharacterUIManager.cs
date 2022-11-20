@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlanetUIManager : MonoBehaviour
+public class CharacterUIManager : MonoBehaviour
 {
-   
-    public void ChangeScene(string scene)
-    {
-        SceneManager.LoadScene(scene);
-    }
+
     public void SelectPlanet()
     {
         SaveSystem.SaveByJson(SaveSystem.PlanetSave, SavingData());
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("GameScene");
 
     }
     SaveData SavingData()
     {
         var saveData = new SaveData();
-        saveData.selectPlanet = PlanetSwipe.currentPlanet;
-        saveData.planetBarValue = PlanetSwipe.currentPlanetBarValue;
+        saveData.selectPlanet = CharacterSwipe.currentCharacter;
         return saveData;
     }
- 
 }

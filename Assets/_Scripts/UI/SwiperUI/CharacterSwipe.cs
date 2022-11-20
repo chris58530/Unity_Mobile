@@ -22,6 +22,8 @@ public class CharacterSwipe : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _characterIntroduce;
 
+    public static int currentCharacter;
+    public static float currentCharacterBarValue;
 
     void Update()
     {
@@ -53,6 +55,8 @@ public class CharacterSwipe : MonoBehaviour
                 transform.GetChild(i).DOScale(new Vector2(1.3f, 1.3f), 0.1f).SetEase(Ease.InOutBounce);
                 transform.GetChild(i).GetComponent<RawImage>().color = Color.white;
                 UpdatePlanet(i);
+                currentCharacter = i;
+
                 //transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale,new Vector2(1f,1f),0.1f);
                 for (int a = 0; a < pos.Length; a++)
                 {

@@ -23,7 +23,7 @@ public class PlanetSwipe : MonoBehaviour
     private TextMeshProUGUI _planetIntroduce;
 
     public static int currentPlanet;
-    public static float currentBarValue;
+    public static float currentPlanetBarValue;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class PlanetSwipe : MonoBehaviour
                 {
                     scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, pos[i], 0.01f);
 
-                    currentBarValue = scrollBar.GetComponent<Scrollbar>().value;
+                    currentPlanetBarValue = scrollBar.GetComponent<Scrollbar>().value;
 
                 }
             }

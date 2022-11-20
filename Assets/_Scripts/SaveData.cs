@@ -13,4 +13,5 @@ using UnityEngine;
     public int selectedCharacter;
     public Vector3 playerPosition;
     public float planetBarValue;
+    public float characterBarValue;
 }
