@@ -27,26 +27,24 @@ public class CreatureDataBaseSO : ScriptableObject
 public class Creature
 {
     public string creatureName;
-    [Header("移動速度")]
-    public float moveSpeed;
+    [Space(20)]
 
+    public float moveSpeed;
     public float attackPower;
 
 
-
-    [Header("攻擊冷卻")]
     public float attackCD;
+    [HideInInspector]
     public float currentAttackCD;
 
-    [Header("受傷冷卻")]
     public float hurtCD;
+    [HideInInspector]
     public float currentHurtCD;
 
-    [Header("血量設定")]
     public float maxHP;
+    [HideInInspector]
     public float currentHP;
 
-    [Header("掉落物(隨機取一)")]
     [SerializeField]
     public GameObject[] items;
    

@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "New Creature Data", menuName = "ScriptableObject/Creat Player Asset", order = 4)]
+[CreateAssetMenu(fileName = "New Creature Data", menuName = "ScriptableObject/Creat Player Asset", order = 5)]
 
 public class PlayerDataBaseSO : ScriptableObject
 {
     public Player[] _player;
 
-    public int CreatureCoun
+    public int PlayerCount
     {
         get { return _player.Length; }
     }

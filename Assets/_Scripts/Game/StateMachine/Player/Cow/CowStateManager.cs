@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CowStateManager : MonoBehaviour
 {
-    public CowBaseState currentState; //DEBUG 使用 正式版需改為PRIVATE!!!!!!
+    public CowBaseState currentState; //DEBUG 使用 正式版需改為PRIVATES
 
     public CowIdleState idleState = new CowIdleState();
     public CowMoveState moveState = new CowMoveState();
