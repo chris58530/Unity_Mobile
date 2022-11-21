@@ -27,8 +27,7 @@ public class PlanetSwipe : MonoBehaviour
 
     private void Awake()
     {
-        string planetConst = SaveSystem.PlanetSave; //SaveSystem.const
-        var saveData = SaveSystem.LoadFormJson<SaveData>(planetConst);
+        var saveData = SaveSystem.LoadFormJson<SaveData>(SaveSystem.PlanetSave);
         scrollBar.GetComponent<Scrollbar>().value = saveData.planetBarValue;
 
     }

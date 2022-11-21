@@ -15,7 +15,7 @@ public abstract class OctopusBaseState
     {
 
 
-        if (!Input.anyKey && creature.CreatureData.currentAttackCD <= 0)
+        if (!Input.anyKey && creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentAttackCD <= 0)
             creature.SwitchState(creature.attackState);
         else
             creature.SwitchState(creature.moveState);
@@ -26,18 +26,18 @@ public abstract class OctopusBaseState
         //    creature.SwitchState(creature.moveState);
 
 
-        if (creature.CreatureData.currentAttackCD > 0)
-            creature.CreatureData.currentAttackCD -= Time.deltaTime;
+        if (creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentAttackCD > 0)
+            creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentAttackCD -= Time.deltaTime;
 
-        if (creature.CreatureData.currentHurtCD > 0)
-            creature.CreatureData.currentHurtCD -= Time.deltaTime;
+        if (creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentHurtCD > 0)
+            creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentHurtCD -= Time.deltaTime;
 
 
     }
 
     public virtual void OnCollisionEnter(OctopusStateManager creature, Collision collision)
     {
-        if (collision.gameObject.tag == ("EnemyAttack") && creature.CreatureData.currentHurtCD <= 0)
+        if (collision.gameObject.tag == ("EnemyAttack") && creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentHurtCD <= 0)
         {
             Debug.Log("EnemyAttack!!!");
 
@@ -80,7 +80,8 @@ public class OctopusMoveState : OctopusBaseState
     public override void UpdateState(OctopusStateManager creature)
     {
         base.UpdateState(creature);
-        rb.velocity = new Vector3(creature.fixedJoystick.Horizontal * creature.CreatureData.moveSpeed, rb.velocity.y, creature.fixedJoystick.Vertical * creature.CreatureData.moveSpeed);
+        rb.velocity = new Vector3(creature.fixedJoystick.Horizontal * creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).moveSpeed
+            , rb.velocity.y, creature.fixedJoystick.Vertical * creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).moveSpeed);
         if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
             creature.transform.rotation = Quaternion.LookRotation(rb.velocity);           
@@ -99,11 +100,11 @@ public class OctopusAttackState : OctopusBaseState
     public override void UpdateState(OctopusStateManager creature)
     {
         base.UpdateState(creature);
-        if (creature.CreatureData.currentAttackCD <= 0)
+        if (creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentAttackCD <= 0)
         {
             OctopusAttack octopusAttack = creature.GetComponent<OctopusAttack>();
             octopusAttack.Attack();
-            creature.CreatureData.currentAttackCD = creature.CreatureData.attackCD;
+            creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentAttackCD = creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).attackCD;
         }
     }    
 }
@@ -114,7 +115,7 @@ public class OctopusHurtState : OctopusBaseState
     public override void EnterState(OctopusStateManager creature)
     {
         base.EnterState(creature);
-        creature.CreatureData.currentHurtCD = creature.CreatureData.hurtCD;
+        creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentHurtCD = creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).hurtCD;
         creature.SwitchState(creature.idleState);
 
     }

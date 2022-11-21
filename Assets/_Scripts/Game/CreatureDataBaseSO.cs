@@ -3,13 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Creature Data",menuName ="ScriptableObject/Creat Creature Asset",order =1)]
-public class CreatureDataSO : ScriptableObject
+public class CreatureDataBaseSO : ScriptableObject
 {
-
+    public Creature[] _creature;
+   
+    public int CreatureCoun
+    {
+        get { return _creature.Length; }
+    }
+    public Creature GetCreature(Name name)
+    {
+        return _creature[(int)name];    
+    }
+    public enum Name
+    {
+        slime,
+        chicken,
+        PCow,
+        rat
+    }
+}
+[System.Serializable]
+public class Creature
+{
+    public string creatureName;
     [Header("移動速度")]
     public float moveSpeed;
 
-    [Header("攻擊力")]
     public float attackPower;
 
 
@@ -22,16 +42,12 @@ public class CreatureDataSO : ScriptableObject
     public float hurtCD;
     public float currentHurtCD;
 
-    [Header("血量設定")] 
+    [Header("血量設定")]
     public float maxHP;
     public float currentHP;
 
     [Header("掉落物(隨機取一)")]
     [SerializeField]
-    private GameObject[] items;
-    public GameObject dropItems
-    {
-        get => items[Random.Range(0, items.Length)]; 
-    }
-
+    public GameObject[] items;
+   
 }

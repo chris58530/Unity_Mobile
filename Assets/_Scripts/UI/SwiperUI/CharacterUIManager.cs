@@ -15,7 +15,7 @@ public class CharacterUIManager : MonoBehaviour
     SaveData SavingData()
     {
         var saveData = new SaveData();
-        saveData.selectPlanet = CharacterSwipe.currentCharacter;
+        saveData.selectCharacter = CharacterSwipe.currentCharacter;
         return saveData;
     }
 }

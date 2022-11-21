@@ -14,7 +14,7 @@ public abstract class MChickenBaseState
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
             float damage = other.gameObject.GetComponentInParent<PlayerData>().attack;
-            creature.CreatureData.currentHP -= damage;
+            creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHP -= damage;
             creature.SwitchState(creature.hurtState);
         }
     }
@@ -40,7 +40,7 @@ public class MChickenMoveState : MChickenBaseState
         if (playerTrans != null)
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
-            rb.transform.Translate(new Vector3(0, 0, 1 * creature.CreatureData.moveSpeed * Time.deltaTime));
+            rb.transform.Translate(new Vector3(0, 0, 1 * creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).moveSpeed * Time.deltaTime));
         }
         else
         {
@@ -62,15 +62,15 @@ public class MChickenHurtState : MChickenBaseState //計時僵直時間
 {
     public override void EnterState(MChickenStateManager creature)
     {
-        if(creature.CreatureData.currentHP <= 0)
+        if(creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHP <= 0)
             GameObject.Destroy(creature.gameObject);
        base.EnterState(creature);
-       creature.CreatureData.currentHurtCD = creature.CreatureData.hurtCD;
+       creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHurtCD = creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).hurtCD;
     }
     public override void UpdateState(MChickenStateManager creature)
     {
-        if (creature.CreatureData.currentHurtCD > 0)
-            creature.CreatureData.currentHurtCD -= Time.deltaTime;
+        if (creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHurtCD > 0)
+            creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHurtCD -= Time.deltaTime;
         else
             creature.SwitchState(creature.moveState);
     }

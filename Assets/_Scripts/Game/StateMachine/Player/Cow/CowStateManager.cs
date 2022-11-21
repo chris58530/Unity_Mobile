@@ -11,14 +11,14 @@ public class CowStateManager : MonoBehaviour
     public CowAttackState attackState = new CowAttackState();
     public CowHurtState hurtState = new CowHurtState();
 
-    public CreatureDataSO CreatureData;
+    public PlayerDataBaseSO playerData;
 
     public FixedJoystick fixedJoystick;
     private Vector3 fixedJoystickPos;
     private void Start()
     {
         currentState = idleState;
-        CreatureData.currentAttackCD = CreatureData.attackCD;
+        playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentAttackCD = playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).attackCD;
 
         currentState.EnterState(this);
         fixedJoystickPos = fixedJoystick.transform.position;

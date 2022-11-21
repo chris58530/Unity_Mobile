@@ -10,7 +10,7 @@ public class PCowStateManager : MonoBehaviour
     public PCowMoveState moveState = new PCowMoveState();
     public PCowChargeState chargeState = new PCowChargeState();
 
-    public CreatureDataSO CreatureData;
+    public CreatureDataBaseSO CreatureData;
 
 
     private void Start()
@@ -19,7 +19,7 @@ public class PCowStateManager : MonoBehaviour
 
         currentState.EnterState(this);
 
-        CreatureData.currentHP = CreatureData.maxHP;
+        CreatureData.GetCreature(CreatureDataBaseSO.Name.PCow).currentHP = CreatureData.GetCreature(CreatureDataBaseSO.Name.PCow).maxHP;
     }
     private void FixedUpdate()
     {

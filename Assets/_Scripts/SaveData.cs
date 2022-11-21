@@ -10,7 +10,7 @@ using UnityEngine;
     public int playerCoin;
     public int playerRuby;
     public int selectPlanet;
-    public int selectedCharacter;
+    public int selectCharacter;
     public Vector3 playerPosition;
     public float planetBarValue;
     public float characterBarValue;

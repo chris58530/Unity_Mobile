@@ -14,14 +14,14 @@ public class OctopusStateManager : MonoBehaviour
     public OctopusMoveState moveState = new OctopusMoveState();
     public OctopusIdleState idleState = new OctopusIdleState();
 
-    public CreatureDataSO CreatureData;
+    public PlayerDataBaseSO playerData;
 
     public FixedJoystick fixedJoystick;
     private Vector3 fixedJoystickPos;
     private void Start()
     {
         currentState = idleState;
-        CreatureData.currentAttackCD = CreatureData.attackCD;
+        playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).currentAttackCD = playerData.GetPlayer(PlayerDataBaseSO.Name.player_Octopus).attackCD;
 
         currentState.EnterState(this);
         fixedJoystickPos = fixedJoystick.transform.position;

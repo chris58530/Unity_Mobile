@@ -15,7 +15,7 @@ public abstract class SlimeBaseState
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
             float damage = other.gameObject.GetComponentInParent<PlayerData>().attack;
-            creature.CreatureData.currentHP -= damage;
+            creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHP -= damage;
             creature.SwitchState(creature.hurtState);
         }
     }
@@ -43,7 +43,7 @@ public class SlimeMoveState : SlimeBaseState
         if (playerTrans != null)
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
-            rb.transform.Translate(new Vector3(0, 0, 1* creature.CreatureData.moveSpeed * Time.deltaTime));
+            rb.transform.Translate(new Vector3(0, 0, 1* creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).moveSpeed * Time.deltaTime));
         }
      
     }
@@ -57,15 +57,15 @@ public class SlimeHurtState : SlimeBaseState
 {
     public override void EnterState(SlimeStateManager creature)
     {
-        if (creature.CreatureData.currentHP <= 0)
+        if (creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHP <= 0)
             GameObject.Destroy(creature.gameObject);
         base.EnterState(creature);
-        creature.CreatureData.currentHurtCD = creature.CreatureData.hurtCD;
+        creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHurtCD = creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).hurtCD;
     }
     public override void UpdateState(SlimeStateManager creature)
     {
-        if (creature.CreatureData.currentHurtCD > 0)
-            creature.CreatureData.currentHurtCD -= Time.deltaTime;
+        if (creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHurtCD > 0)
+            creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHurtCD -= Time.deltaTime;
         else
             creature.SwitchState(creature.moveState);
     }

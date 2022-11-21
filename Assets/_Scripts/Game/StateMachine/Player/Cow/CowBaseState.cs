@@ -15,7 +15,7 @@ public abstract class CowBaseState
     {
 
 
-        if (!Input.anyKey && creature.CreatureData.currentAttackCD <= 0)
+        if (!Input.anyKey && creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentAttackCD <= 0)
             creature.SwitchState(creature.attackState);
         else
             creature.SwitchState(creature.moveState);
@@ -23,18 +23,18 @@ public abstract class CowBaseState
       
 
 
-        if (creature.CreatureData.currentAttackCD > 0)
-            creature.CreatureData.currentAttackCD -= Time.deltaTime;
+        if (creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentAttackCD > 0)
+            creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentAttackCD -= Time.deltaTime;
 
-        if (creature.CreatureData.currentHurtCD > 0)
-            creature.CreatureData.currentHurtCD -= Time.deltaTime;
+        if (creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentHurtCD > 0)
+            creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentHurtCD -= Time.deltaTime;
 
 
     }
 
     public virtual void OnCollisionEnter(CowStateManager creature, Collision collision)
     {
-        if (collision.gameObject.tag == ("EnemyAttack") && creature.CreatureData.currentHurtCD <= 0)
+        if (collision.gameObject.tag == ("EnemyAttack") && creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentHurtCD <= 0)
         {
             Debug.Log("EnemyAttack!!!");
 
@@ -73,9 +73,9 @@ public class CowAttackState : CowBaseState
     {
         //animation here
         base.UpdateState(creature);
-        if (creature.CreatureData.currentAttackCD <= 0)
+        if (creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentAttackCD <= 0)
         {
-           creature.CreatureData.currentAttackCD = creature.CreatureData.attackCD;
+           creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).currentAttackCD = creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).attackCD;
         }
     }
     IEnumerator TimeToIdle(CowStateManager creature)
@@ -99,7 +99,8 @@ public class CowMoveState : CowBaseState
     {
         //animation here
         base.UpdateState(creature);
-        rb.velocity = new Vector3(creature.fixedJoystick.Horizontal * creature.CreatureData.moveSpeed, rb.velocity.y, creature.fixedJoystick.Vertical * creature.CreatureData.moveSpeed);
+        rb.velocity = new Vector3(creature.fixedJoystick.Horizontal * creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).moveSpeed, rb.velocity.y
+            , creature.fixedJoystick.Vertical * creature.playerData.GetPlayer(PlayerDataBaseSO.Name.player_Cow).moveSpeed);
         if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
             creature.transform.rotation = Quaternion.LookRotation(rb.velocity);

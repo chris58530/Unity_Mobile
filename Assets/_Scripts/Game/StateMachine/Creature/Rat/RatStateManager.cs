@@ -11,7 +11,7 @@ public class RatStateManager : MonoBehaviour
     public RatHurtState hurtState = new RatHurtState();
     public RatMoveState moveState = new RatMoveState();
 
-    public CreatureDataSO CreatureData;
+    public CreatureDataBaseSO CreatureData;
 
 
     private void Start()
@@ -20,7 +20,7 @@ public class RatStateManager : MonoBehaviour
 
         currentState.EnterState(this);
 
-        CreatureData.currentHP = CreatureData.maxHP;
+        CreatureData.GetCreature(CreatureDataBaseSO.Name.rat).currentHP = CreatureData.GetCreature(CreatureDataBaseSO.Name.rat).maxHP;
 
     }
     private void FixedUpdate()

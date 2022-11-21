@@ -9,7 +9,7 @@ public class MChickenStateManager : MonoBehaviour
     public MChickenHurtState hurtState = new MChickenHurtState();
     public MChickenMoveState moveState = new MChickenMoveState();
 
-    public CreatureDataSO CreatureData;
+    public CreatureDataBaseSO CreatureData;
 
 
     private void Start()
@@ -18,7 +18,7 @@ public class MChickenStateManager : MonoBehaviour
 
         currentState.EnterState(this);
 
-        CreatureData.currentHP = CreatureData.maxHP;
+        CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHP = CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).maxHP;
 
     }
     private void FixedUpdate()

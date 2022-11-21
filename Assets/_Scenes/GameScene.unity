@@ -99,7 +99,8 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: c74a0469191fe3748b2bb6ee0851fe2d,
     type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 9461465203896d340b3db9be7775fd03,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -249,6 +250,7 @@ GameObject:
   - component: {fileID: 344921650}
   - component: {fileID: 344921649}
   - component: {fileID: 344921651}
+  - component: {fileID: 344921652}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -300,6 +302,20 @@ MonoBehaviour:
   _spawnRate: 1
   _minSpawnPos: -70
   _maxSpawnPos: 70
+--- !u!114 &344921652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344921648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f904f803ec49354582c1d9c58b6ea94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpawnPos: {fileID: 0}
+  playerDataBaseSO: {fileID: 0}
 --- !u!1001 &373168186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -813,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9fed1cb8f44dc47b141cdef2b12c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureData: {fileID: 11400000, guid: cd57288eb63c5a941abb124fe815a1f2, type: 2}
+  playerData: {fileID: 0}
   fixedJoystick: {fileID: 2929252283677587810}
 --- !u!54 &606814698
 Rigidbody:
@@ -843,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f984b71c7c440a19b4a1935d33d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: cd57288eb63c5a941abb124fe815a1f2, type: 2}
+  Data: {fileID: 0}
 --- !u!114 &606814700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8715e5459023a42ac04484df99f009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureData: {fileID: 11400000, guid: cd57288eb63c5a941abb124fe815a1f2, type: 2}
+  playerData: {fileID: 0}
   fixedJoystick: {fileID: 2929252283677587810}
 --- !u!1 &617933286
 GameObject:
