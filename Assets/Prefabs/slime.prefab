@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d9887272c616941b9e7759fb191b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureData: {fileID: 11400000, guid: ef6d4830a69649246a0754a25d61c4cd, type: 2}
+  creatureData: {fileID: 11400000, guid: 05ea8790b0ddf1640b1c727139b1c1db, type: 2}
 --- !u!114 &7090966584178009393
 MonoBehaviour:
   m_ObjectHideFlags: 0

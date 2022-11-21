@@ -8,7 +8,7 @@ public class PlayerSpawn : MonoBehaviour
     public Transform playerSpawnPos;
     [SerializeField]
     private PlayerDataBaseSO playerDataBaseSO;
-    void Start()
+    void Awake()
     {
         var saveData = SaveSystem.LoadFormJson<SaveData>(SaveSystem.CharacterSave);
         currentPlayer = saveData.selectCharacter;

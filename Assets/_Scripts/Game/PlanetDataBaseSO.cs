@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "New Creature Data", menuName = "ScriptableObject/Creat Planet Asset", order = 2)]
+[CreateAssetMenu(fileName = "New Data", menuName = "ScriptableObject/Creat Planet Asset", order = 2)]
 public class PlanetDataBaseSO : ScriptableObject
 {
     public Planet[] _planet;

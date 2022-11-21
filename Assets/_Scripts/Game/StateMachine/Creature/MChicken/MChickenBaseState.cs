@@ -40,7 +40,7 @@ public class MChickenMoveState : MChickenBaseState
         if (playerTrans != null)
         {
             rb.transform.LookAt(new Vector3(playerTrans.position.x, creature.transform.position.y, playerTrans.position.z));
-            rb.transform.Translate(new Vector3(0, 0, 1 * creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).moveSpeed * Time.deltaTime));
+            //rb.transform.Translate(new Vector3(0, 0,  creature.CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).moveSpeed * Time.deltaTime));
         }
         else
         {

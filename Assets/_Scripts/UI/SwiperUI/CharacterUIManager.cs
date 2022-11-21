@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class CharacterUIManager : MonoBehaviour
 {
 
-    public void SelectPlanet()
+    public void SelectCharacter()
     {
-        SaveSystem.SaveByJson(SaveSystem.PlanetSave, SavingData());
+        SaveSystem.SaveByJson(SaveSystem.CharacterSave, SavingData());
         SceneManager.LoadScene("GameScene");
 
     }

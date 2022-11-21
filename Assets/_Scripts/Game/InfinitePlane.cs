@@ -22,7 +22,7 @@ class Tile //Tile類別建構子
 public class InfinitePlane : MonoBehaviour
 {
     public GameObject[] plane;
-    public GameObject player;
+     GameObject player;
 
     int planeSize = 10;
     int halfTilesX = 10;
@@ -32,7 +32,7 @@ public class InfinitePlane : MonoBehaviour
 
     Hashtable tiles =  new Hashtable();
 
-
+ 
     private void Start()
     {
         gameObject.transform.position = Vector3.zero;
@@ -110,6 +110,8 @@ public class InfinitePlane : MonoBehaviour
                 startPos = player.transform.position;
 
             }
-        }
+        }else
+            player = GameObject.FindGameObjectWithTag("Player");
+
     }
 }

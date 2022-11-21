@@ -18,7 +18,7 @@ public class MChickenStateManager : MonoBehaviour
 
         currentState.EnterState(this);
 
-        CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHP = CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).maxHP;
+        //CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).currentHP = CreatureData.GetCreature(CreatureDataBaseSO.Name.chicken).maxHP;
 
     }
     private void FixedUpdate()
