@@ -55,13 +55,18 @@ public class SlimeMoveState : SlimeBaseState
 
 public class SlimeHurtState : SlimeBaseState
 {
+  
     public override void EnterState(SlimeStateManager creature)
     {
         if (creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHP <= 0)
+        {
             GameObject.Destroy(creature.gameObject);
+            EnemyDrop enemyDrop = new EnemyDrop();
+            enemyDrop.DropItem(creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime), creature.transform);
+        }
         base.EnterState(creature);
         creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHurtCD = creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).hurtCD;
-    }
+    }  
     public override void UpdateState(SlimeStateManager creature)
     {
         if (creature.creatureData.GetCreature(CreatureDataBaseSO.Name.slime).currentHurtCD > 0)

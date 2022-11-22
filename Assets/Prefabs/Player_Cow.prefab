@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 3521379764105083045}
   - component: {fileID: 3521379764105083044}
   m_Layer: 6
-  m_Name: Player_Octopus
+  m_Name: Player_Cow
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a04159174839d674a908d179f881fe7d, type: 2}
+  - {fileID: 2100000, guid: e6549e103aa6f8049a143178bc36ae1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

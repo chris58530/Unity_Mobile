@@ -22,6 +22,7 @@ public class CreatureDataBaseSO : ScriptableObject
         PCow,
         rat
     }
+   
 }
 [System.Serializable]
 public class Creature
@@ -45,7 +46,10 @@ public class Creature
     [HideInInspector]
     public float currentHP;
 
+    [Header("掉落物-物件和機率順序需一致")]
     [SerializeField]
     public GameObject[] items;
+    [SerializeField]
+    public int[] probability;
    
 }

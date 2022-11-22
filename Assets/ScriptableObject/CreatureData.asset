@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _creature:
   - creatureName: Slime
-    moveSpeed: 3
-    attackPower: 3
-    attackCD: 3
+    moveSpeed: 1
+    attackPower: 1
+    attackCD: 1
     currentAttackCD: 0
-    hurtCD: 3
-    currentHurtCD: 0
-    maxHP: 3
-    currentHP: 0
-    items: []
+    hurtCD: 1
+    currentHurtCD: 1
+    maxHP: 1
+    currentHP: 1
+    items:
+    - {fileID: 2996883092409544701, guid: ccd13d19eb52c6243882fb41eef3afd6, type: 3}
+    - {fileID: 2996883092409544701, guid: ccd13d19eb52c6243882fb41eef3afd6, type: 3}
+    - {fileID: 2996883092409544701, guid: 9a47f705ff52cc04a9765219a209a87c, type: 3}
+    probability: 64000000320000000a000000
   - creatureName: Chicken
     moveSpeed: 3
     attackPower: 3
@@ -33,6 +37,7 @@ MonoBehaviour:
     maxHP: 3
     currentHP: 0
     items: []
+    probability: 
   - creatureName: PCow
     moveSpeed: 3
     attackPower: 3
@@ -43,6 +48,7 @@ MonoBehaviour:
     maxHP: 3
     currentHP: 0
     items: []
+    probability: 
   - creatureName: Rat
     moveSpeed: 3
     attackPower: 3
@@ -53,3 +59,4 @@ MonoBehaviour:
     maxHP: 3
     currentHP: 0
     items: []
+    probability: 

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player:
   - name: Player_Cow
-    playerObject: {fileID: 3521379764105083055, guid: c1135c67ddac71d49a98a622a5d6b2eb,
+    playerObject: {fileID: 3521379764105083055, guid: 805895b2ce94a1342b2a2cf8b12d4fb9,
       type: 3}
-    moveSpeed: 3
+    moveSpeed: 15
     attackPower: 3
-    attackCD: 3
+    attackCD: 0.5
     currentAttackCD: 0
     hurtCD: 3
     currentHurtCD: 0
@@ -28,12 +28,12 @@ MonoBehaviour:
   - name: Player_Octopus
     playerObject: {fileID: 3521379764105083055, guid: c1135c67ddac71d49a98a622a5d6b2eb,
       type: 3}
-    moveSpeed: 3
+    moveSpeed: 15
     attackPower: 3
-    attackCD: 3
-    currentAttackCD: 2.3600006
+    attackCD: 0.5
+    currentAttackCD: 0.03999991
     hurtCD: 3
-    currentHurtCD: 2.7600002
+    currentHurtCD: -0.019997705
     maxHP: 3
     currentHP: 0
     items: []

@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class EnemyDrop : MonoBehaviour
 {
-    public void Drop()
+    public void DropItem(Creature creature, Transform creatuerTrans)
     {
+        int randomCount = Random.Range(1, 101);
+        Debug.Log(randomCount);
+        for (int i = 0; i < creature.items.Length; i++)
+        {
+            if (creature.probability[i] >= randomCount)
+            {
+                Vector3 posOffset = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
+                Instantiate(creature.items[i],creatuerTrans.position+ posOffset, creatuerTrans.rotation);
 
-    }
-    private enum CreatureDataEnum
-    {
-        slime,
-        chicken,
+            }
+        }
 
     }
 
