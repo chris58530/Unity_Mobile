@@ -551,11 +551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plane:
   - {fileID: 5872691972344790881, guid: 19849c360d5bed24081284efdcbcc97b, type: 3}
-  - {fileID: 5872691972344790881, guid: f61d4d3a669e9f64f90f046794ab5f26, type: 3}
-  - {fileID: 5872691972344790881, guid: bff54a2284e76444fb9ceed486b2be89, type: 3}
-  - {fileID: 5872691972344790881, guid: 40d66db288f09fa409210698cc3772ec, type: 3}
-  - {fileID: 5872691972344790881, guid: 19e81d6d7d872e84ab39ce12a6540537, type: 3}
-  - {fileID: 5872691972344790881, guid: 4635bcbe51ee22b4ebb8dd220498fc02, type: 3}
 --- !u!4 &1110598294
 Transform:
   m_ObjectHideFlags: 0
